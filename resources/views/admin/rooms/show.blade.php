@@ -220,54 +220,7 @@
 
                         <tbody>
                         @if (count($cleansBy_list) > 0)
-                            <!-- @foreach ($cleansBy_list as $cleansBy_list)
-                                <tr data-entry-id="{{ $cleansBy->id }}">
-                                    <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
-                                    <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
-                                    <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
-                                    <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
-                                   
-                                    @if( request('show_deleted') == 1 )
-                                        <td>
-                                            @can('booking_delete')
-                                                {!! Form::open(array(
-                                                'style' => 'display: inline-block;',
-                                                'method' => 'POST',
-                                                'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                'route' => ['admin.bookings.restore', $cleansBy->id])) !!}
-                                                                                {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                                                                {!! Form::close() !!}
-                                                                            @endcan
-                                                                            @can('booking_delete')
-                                                                                {!! Form::open(array(
-                                                'style' => 'display: inline-block;',
-                                                'method' => 'DELETE',
-                                                'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                'route' => ['admin.bookings.perma_del', $cleansBy->id])) !!}
-                                                                                {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                                                                {!! Form::close() !!}
-                                                                            @endcan
-                                        </td>
-                                    @else
-                                        <td>
-                                            @can('booking_view')
-                                                <a href="{{ route('admin.users.show',[$cleansBy->user_id]) }}"
-                                                   class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                            @endcan
-                                          
-                                            @can('booking_delete')
-                                                {!! Form::open(array(
-                                                                                        'style' => 'display: inline-block;',
-                                                                                        'method' => 'DELETE',
-                                                                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                                                        'route' => ['admin.clean.destroy', $cleansBy->id])) !!}
-                                                {!! Form::submit(trans('quickadmin.qa_remove'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                                {!! Form::close() !!}
-                                            @endcan
-                                        </td>
-                                    @endif
-                                </tr>
-                            @endforeach -->
+                         
                         @else
                             <tr>
                                 <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
