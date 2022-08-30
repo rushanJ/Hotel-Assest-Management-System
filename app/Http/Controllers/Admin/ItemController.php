@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreItemsRequest;
 use App\Http\Requests\Admin\UpdateSuppliersRequest;
+use App\Http\Requests\Admin\UpdateItemsRequest;
+
 use App\Category;
 use App\Room;
 use App\Supplier;
@@ -75,7 +77,7 @@ class ItemController extends Controller
 
         // dd(['serialNo'=> $request["serialNo"],'name'=>$request["name"],'model'=>$request["model"],'brand'=>$request["brand"],'supplierId'=>$request["supplierId"],'roomId'=>$request["roomId"],'description'=>$request["description"]]);
        $item = Item::create(['serialNo'=> $request["serialNo"],'name'=>$request["name"],'model'=>$request["model"],'brand'=>$request["brand"],'supplierId'=>$request["supplierId"],'roomId'=>$request["roomId"],'description'=>$request["description"]]);
-        return redirect()->route('admin.item.index');
+       return redirect()->route('admin.item.index');
     }
 
 
@@ -87,33 +89,39 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
+       
         if (! Gate::allows('room_edit')) {
             return abort(401);
         }
-        $room = Room::findOrFail($id);
-        $categories = Category::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
-        $image=$room['image'];
-        return view('admin.rooms.edit', compact('room','categories','image'));
+        // dd($id);
+        $item = Item::findOrFail($id);
+        
+        $rooms = Room::get()->pluck('room_number', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $suppliers = Supplier::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+         
+        return view('admin.items.edit', compact('item','rooms','suppliers'));
     }
 
     /**
      * Update Room in storage.
      *
-     * @param  \App\Http\Requests\UpdateRoomsRequest  $request
+     * @param  \App\Http\Requests\UpdateItemsRequest   $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoomsRequest $request, $id)   
+    public function update(UpdateItemsRequest  $request, $id)   
     {
         if (! Gate::allows('room_edit')) {
             return abort(401);
         }
-        $room = Room::findOrFail($id);
+        $room = Item::findOrFail($id);
         // $room->update($request->all());
-        $room->update( ['room_number'=> $request["room_number"],'cardId'=>$request["cardId"],'price'=>$request["price"],'guestCount'=>$request["guestCount"],'category_id'=>$request["category_id"],'floor'=>$request["floor"],'description'=>$request["description"] ]);
+        // $item = Item::create(['serialNo'=> $request["serialNo"],'name'=>$request["name"],'model'=>$request["model"],'brand'=>$request["brand"],'supplierId'=>$request["supplierId"],'roomId'=>$request["roomId"],'description'=>$request["description"]]);
+
+        $room->update(['serialNo'=> $request["serialNo"],'name'=>$request["name"],'model'=>$request["model"],'brand'=>$request["brand"],'supplierId'=>$request["supplierId"],'roomId'=>$request["roomId"],'description'=>$request["description"]]);
        
 
-        return redirect()->route('admin.rooms.index');
+        return redirect()->route('admin.item.index');
     }
 
 
@@ -151,13 +159,15 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
+        
         if (! Gate::allows('room_delete')) {
             return abort(401);
         }
-        $room = Room::findOrFail($id);
+        // dd("zxfsdf");
+        $room = Item::findOrFail($id);
         $room->delete();
 
-        return redirect()->route('admin.rooms.index');
+        return redirect()->route('admin.item.index');
     }
 
     /**
