@@ -126,8 +126,9 @@ class RoomsController extends Controller
         if (! Gate::allows('room_view')) {
             return abort(401);
         }
-        $bookings = \App\Booking::where('room_id', $id)->get();
 
+        $bookings = \App\Booking::where('room_id', $id)->get();
+        dd ($bookings);
         $room = Room::find($id);
         
      
