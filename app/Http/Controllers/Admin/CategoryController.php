@@ -83,7 +83,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        if (!Gate::allows('category_delete')) {
+        if (!Gate::allows('category_view')) {
             return abort(401);
         }
         $booking = Category::findOrFail($id);
@@ -109,6 +109,23 @@ class CategoryController extends Controller
                 $entry->delete();
             }
         }
+    }
+
+       /**
+     * Display Category.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        if (! Gate::allows('customer_view')) {
+            return abort(401);
+        }
+        
+        $category = Category::findOrFail($id);
+
+        return view('admin.categories.edit', compact('category'));
     }
 
 

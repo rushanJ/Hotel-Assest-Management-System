@@ -47,7 +47,7 @@
             <ul class="nav nav-tabs" role="tablist">
 
                 <li role="presentation" class="active"><a href="#services" aria-controls="services" role="tab"
-                                                          data-toggle="tab">Services</a></li>
+                                                          data-toggle="tab">Maintains</a></li>
 
                 
             </ul>

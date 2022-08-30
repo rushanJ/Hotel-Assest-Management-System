@@ -102,10 +102,10 @@ class CleanController extends Controller
         );
 
      
-    } 
-    catch (Swift_TransportException $e) {
-        echo $e->getMessage();
-    }
+        } 
+        catch (Swift_TransportException $e) {
+            echo $e->getMessage();
+        }
 
 
         //   dd(['user_id'=> $request["user_id"],'room_id'=>$request["room_id"],'date'=>$request["date"],'remarks'=>$request["remarks"]]);
@@ -219,11 +219,31 @@ class CleanController extends Controller
         $clean = Clean::findOrFail($id);
         // $room->update($request->all());
         $clean->update( ['status'=>'DONE' ]);
-
+     
+        $room = Room::findOrFail($clean->room_id);
+        //  dd($room );
         Clean::where('id', $id)
         ->update([
                'status' => 'DONE'
         ]);
+        try {
+            $client = new \GuzzleHttp\Client();
+            $client->post(
+                'http://critssl.com/email/',
+                array(
+                    'form_params' => array(
+                        'email' => "rushanthasindu10@gmail.com",
+                        'subject' => 'Cleaning Done',
+                        'message' => "Property : " .$room->room_number
+                    )
+                )
+            );
+    
+         
+        } 
+        catch (Swift_TransportException $e) {
+            echo $e->getMessage();
+        }
 
         return back();
     }
