@@ -220,7 +220,16 @@
 
                         <tbody>
                         @if (count($cleansBy_list) > 0)
-                         
+                        @foreach ($cleansBy_list as $cleansBy_list)
+                                <tr data-entry-id="{{ $cleansBy->id }}">
+                                    <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
+                                   
+                                    
+                                </tr>
+                            @endforeach
                         @else
                             <tr>
                                 <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
