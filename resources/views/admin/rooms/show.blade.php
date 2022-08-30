@@ -229,7 +229,7 @@
                                    
                                     @if( request('show_deleted') == 1 )
                                         <td>
-                                            @can('booking_delete')
+                                            <!-- @can('booking_delete')
                                                 {!! Form::open(array(
                                                 'style' => 'display: inline-block;',
                                                 'method' => 'POST',
@@ -246,7 +246,7 @@
                                                 'route' => ['admin.bookings.perma_del', $cleansBy->id])) !!}
                                                                                 {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                                                                 {!! Form::close() !!}
-                                                                            @endcan
+                                                                            @endcan -->
                                         </td>
                                     @else
                                         <td>
