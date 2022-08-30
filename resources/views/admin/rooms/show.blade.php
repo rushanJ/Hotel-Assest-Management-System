@@ -220,7 +220,7 @@
 
                         <tbody>
                         @if (count($cleansBy_list) > 0)
-                            @foreach ($cleansBy_list as $cleansBy_list)
+                            <!-- @foreach ($cleansBy_list as $cleansBy_list)
                                 <tr data-entry-id="{{ $cleansBy->id }}">
                                     <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
@@ -229,7 +229,7 @@
                                    
                                     @if( request('show_deleted') == 1 )
                                         <td>
-                                            <!-- @can('booking_delete')
+                                            @can('booking_delete')
                                                 {!! Form::open(array(
                                                 'style' => 'display: inline-block;',
                                                 'method' => 'POST',
@@ -246,7 +246,7 @@
                                                 'route' => ['admin.bookings.perma_del', $cleansBy->id])) !!}
                                                                                 {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                                                                 {!! Form::close() !!}
-                                                                            @endcan -->
+                                                                            @endcan
                                         </td>
                                     @else
                                         <td>
@@ -267,7 +267,7 @@
                                         </td>
                                     @endif
                                 </tr>
-                            @endforeach
+                            @endforeach -->
                         @else
                             <tr>
                                 <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
