@@ -220,14 +220,13 @@
 
                         <tbody>
                         @if (count($cleansBy_list) > 0)
-                            @foreach ($cleansBy_list as $cleansBy)
+                            @foreach ($cleansBy_list as $cleansBy_list)
                                 <tr data-entry-id="{{ $cleansBy->id }}">
                                     <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    
-                                    <td field-key='additional_information'>{!! $booking->additional_information !!}</td>
                                     @if( request('show_deleted') == 1 )
                                         <td>
                                             @can('booking_delete')
@@ -235,7 +234,7 @@
                                                 'style' => 'display: inline-block;',
                                                 'method' => 'POST',
                                                 'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                'route' => ['admin.bookings.restore', $booking->id])) !!}
+                                                'route' => ['admin.bookings.restore', $cleansBy->id])) !!}
                                                                                 {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
                                                                                 {!! Form::close() !!}
                                                                             @endcan
@@ -244,7 +243,7 @@
                                                 'style' => 'display: inline-block;',
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                'route' => ['admin.bookings.perma_del', $booking->id])) !!}
+                                                'route' => ['admin.bookings.perma_del', $cleansBy->id])) !!}
                                                                                 {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                                                                 {!! Form::close() !!}
                                                                             @endcan
@@ -314,7 +313,7 @@
                                                 'style' => 'display: inline-block;',
                                                 'method' => 'POST',
                                                 'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                'route' => ['admin.bookings.restore', $booking->id])) !!}
+                                                'route' => ['admin.bookings.restore', $item->id])) !!}
                                                                                 {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
                                                                                 {!! Form::close() !!}
                                                                             @endcan
@@ -323,7 +322,7 @@
                                                 'style' => 'display: inline-block;',
                                                 'method' => 'DELETE',
                                                 'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                'route' => ['admin.bookings.perma_del', $booking->id])) !!}
+                                                'route' => ['admin.bookings.perma_del', $item->id])) !!}
                                                                                 {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                                                                 {!! Form::close() !!}
                                                                             @endcan
