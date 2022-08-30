@@ -82,7 +82,7 @@ class CleanController extends Controller
        
        $item = Clean::create(['user_id'=> $request["user_id"],'room_id'=>$request["room_id"],'date'=>$request["date"],'remarks'=>$request["remarks"]]);
        $user = User::findOrFail($request["user_id"]);
-     
+       $room = Room::find($request["room_id"]);
        
        try {
         $client = new \GuzzleHttp\Client();
@@ -94,7 +94,7 @@ class CleanController extends Controller
                     'name' => $user->name,
                     'startTime' => $request["date"],
                     'endTime' => $request["date"],
-                    'subject' => 'Clean Room '. $request["room_id"],
+                    'subject' => 'Clean  '. $room ->room_number,
                     'description' => $request["remarks"],
                     'room_id' => $request["room_id"]
                 )
