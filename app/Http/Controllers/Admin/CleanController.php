@@ -232,7 +232,7 @@ class CleanController extends Controller
                 'http://critssl.com/email/',
                 array(
                     'form_params' => array(
-                        'email' => "rushanthasindu10@gmail.com",
+                        'email' => "mapalagamageethmi@gmail.com",
                         'subject' => 'Cleaning Done',
                         'message' => "Property : " .$room->room_number
                     )
