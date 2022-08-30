@@ -202,7 +202,7 @@
                         </div>
                     </div>
                     </div>
-                    <table class="table table-bordered table-striped {{ count($bookings) > 0 ? 'datatable' : '' }}">
+                    <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
                         <thead>
                         <tr>
                             <th>@lang('quickadmin.clean.fields.employee')</th>
