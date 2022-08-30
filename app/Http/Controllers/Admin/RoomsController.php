@@ -128,7 +128,7 @@ class RoomsController extends Controller
         }
 
         $bookings = \App\Booking::where('room_id', $id)->get();
-        dd ($bookings);
+        // dd ($bookings);
         $room = Room::find($id);
         
      
