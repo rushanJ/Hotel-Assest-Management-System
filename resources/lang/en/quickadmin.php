@@ -103,7 +103,7 @@ return [
 			'brand' => 'Brand',
 			'serialNo' => 'Serial number',
 			'supplier' => 'Supplier',
-			'room' => 'Room',		
+			'room' => 'Property',		
 			
 		],
 	],
