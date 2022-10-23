@@ -21,6 +21,7 @@ class CreateCleansTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->string('date');
             $table->string('remarks');
+            $table->string('type');
             $table->string('status')->default('PENDING');;
             $table->timestamps();
         });

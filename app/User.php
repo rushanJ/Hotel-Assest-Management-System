@@ -12,6 +12,7 @@ use Hash;
  * @package App
  * @property string $name
  * @property string $email
+ * @property string $contactNo
  * @property string $password
  * @property string $role
  * @property string $remember_token
@@ -19,7 +20,7 @@ use Hash;
 class User extends Authenticatable
 {
     use Notifiable;
-    protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id','date'];
+    protected $fillable = ['name', 'email', 'contactNo','password', 'remember_token', 'role_id','date'];
     
     
     

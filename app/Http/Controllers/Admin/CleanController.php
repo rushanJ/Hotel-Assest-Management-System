@@ -80,7 +80,7 @@ class CleanController extends Controller
         }
 
        
-       $item = Clean::create(['user_id'=> $request["user_id"],'room_id'=>$request["room_id"],'date'=>$request["date"],'remarks'=>$request["remarks"]]);
+       $item = Clean::create(['user_id'=> $request["user_id"],'room_id'=>$request["room_id"],'date'=>$request["date"],'remarks'=>$request["remarks"],'type'=>$request["type"]]);
        $user = User::findOrFail($request["user_id"]);
        $room = Room::find($request["room_id"]);
        
@@ -94,7 +94,7 @@ class CleanController extends Controller
                     'name' => $user->name,
                     'startTime' => $request["date"],
                     'endTime' => $request["date"],
-                    'subject' => 'Clean  '. $room ->room_number,
+                    'subject' => $request["type"].'  '. $room ->room_number,
                     'description' => $request["remarks"],
                     'room_id' => $request["room_id"]
                 )
@@ -107,6 +107,30 @@ class CleanController extends Controller
             echo $e->getMessage();
         }
 
+        $msgTxt=$request["type"].'  '. $room ->room_number.'\n startTime : ' . $request["startTime"] .'\n endTime : '.$request["date"].'\n description : ' .$request["remarks"];
+
+        try {
+            $client = new \GuzzleHttp\Client();
+            $res=$client->post(
+                'https://app.notify.lk/api/v1/send',
+                array(
+                    'form_params' => array(
+                        'user_id' => '23643',
+                        'api_key' => 'Dq6KcyMvbKVDt104JW26',
+                        'sender_id' => "NotifyDEMO",
+                        'to' => "94".$user->contactNo,
+                        'message' => $msgTxt
+                       
+                    )
+                )
+            );
+    
+         
+            } 
+            catch (Swift_TransportException $e) {
+                // echo $e->getMessage();
+                return back();
+            }
 
         //   dd(['user_id'=> $request["user_id"],'room_id'=>$request["room_id"],'date'=>$request["date"],'remarks'=>$request["remarks"]]);
        return back();

@@ -37,6 +37,18 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('contactNo', trans('quickadmin.users.fields.contactNo').'*', ['class' => 'control-label']) !!}
+                    {!! Form::text('contactNo', old('email'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('contactNo'))
+                        <p class="help-block">
+                            {{ $errors->first('contactNo') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('password', trans('quickadmin.users.fields.password').'*', ['class' => 'control-label']) !!}
                     {!! Form::password('password', ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
@@ -46,7 +58,7 @@
                         </p>
                     @endif
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('role_id', trans('quickadmin.users.fields.role').'*', ['class' => 'control-label']) !!}

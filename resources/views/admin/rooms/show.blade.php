@@ -40,6 +40,15 @@
                                                           data-toggle="tab">Bookings</a></li>
                 <li role="presentation" class=""><a href="#cleaning" aria-controls="cleaning" role="tab"
                                                           data-toggle="tab">Cleaning</a></li>
+
+                <li role="presentation" class=""><a href="#mechanical" aria-controls="mechanical" role="tab"
+                                                          data-toggle="tab">Mechanical</a></li>
+
+                <li role="presentation" class=""><a href="#electrical" aria-controls="electrical" role="tab"
+                                                          data-toggle="tab">Electrical</a></li>
+            
+                <li role="presentation" class=""><a href="#plumbing" aria-controls="plumbing" role="tab"
+                                                          data-toggle="tab">Plumbing</a></li>
                                             
                 <li role="presentation" class=""><a href="#items" aria-controls="items" role="tab"
                                                           data-toggle="tab">items</a></li>
@@ -159,6 +168,467 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="room_id"  class="  form-control" placeholder="Enter room number" name="room_number" value="{{ $id}}" required >
+                                <input type="hidden" name="type"  class="  form-control" placeholder="Enter room number" name="room_number" value="CLEAN" required >
+
+                                
+                            
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('user_id', trans('quickadmin.clean.fields.employee').'', ['class' => 'control-label']) !!}
+                                        {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control select2']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('user_id'))
+                                            <p class="help-block">
+                                                {{ $errors->first('user_id') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('remarks', trans('quickadmin.clean.fields.remarks').'*', ['class' => 'control-label']) !!}
+                                        {!! Form::textarea('remarks', old('remarks'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('remarks'))
+                                            <p class="help-block">
+                                                {{ $errors->first('remarks') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                                {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-success']) !!}
+                            </div> 
+                            
+                        {!! Form::close() !!}
+                        
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
+                        <thead>
+                        <tr>
+                            <th>@lang('quickadmin.clean.fields.employee')</th>
+                            <th>@lang('quickadmin.clean.fields.date')</th>
+                            <th>@lang('quickadmin.clean.fields.remarks')</th>
+                            <th>@lang('quickadmin.clean.fields.assigned_at')</th>
+                           
+                            @if( request('show_deleted') == 1 )
+                                <th>&nbsp;</th>
+                            @else
+                                <th>&nbsp;</th>
+                            @endif
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @if (count($cleansBy_list) > 0)
+                        @foreach ($cleansBy_list as $cleansBy)
+                            @if($cleansBy->type =='CLEAN')
+                                <tr data-entry-id="{{ $cleansBy->id }}">
+                                    <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
+                                   
+                                    @if( request('show_deleted') == 1 )
+                                        <td>
+                                            @can('booking_delete')
+                                                {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'POST',
+                                                'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                'route' => ['admin.bookings.restore', $cleansBy->id])) !!}
+                                                                                {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                                                                {!! Form::close() !!}
+                                                                            @endcan
+                                                                            @can('booking_delete')
+                                                                                {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'DELETE',
+                                                'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                'route' => ['admin.bookings.perma_del', $cleansBy->id])) !!}
+                                                                                {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                                                                {!! Form::close() !!}
+                                                                            @endcan
+                                        </td>
+                                    @else
+                                        <td>
+                                            @can('booking_view')
+                                                <a href="{{ route('admin.users.show',[$cleansBy->user_id]) }}"
+                                                   class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                            @endcan
+                                          
+                                            @can('booking_delete')
+                                                {!! Form::open(array(
+                                                                                        'style' => 'display: inline-block;',
+                                                                                        'method' => 'DELETE',
+                                                                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                                                        'route' => ['admin.clean.destroy', $cleansBy->id])) !!}
+                                                {!! Form::submit(trans('quickadmin.qa_remove'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                                {!! Form::close() !!}
+                                            @endcan
+                                        </td>
+                                    @endif
+                                </tr>
+                                @endif
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+
+                <div role="tabpanel" class="tab-pane inactive" id="mechanical">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
+                        @lang('quickadmin.qa_add_new')
+                    </button>
+
+                    <div class="modal fade" id="myModal1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                        {!! Form::open(['method' => 'POST', 'files' => true, 'route' => ['admin.clean.store']]) !!}
+                        <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('date', trans('quickadmin.clean.fields.date').'*', ['class' => 'control-label']) !!}
+                                        {!! Form::date('date', old('date'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('date'))
+                                            <p class="help-block">
+                                                {{ $errors->first('date') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <input type="hidden" name="room_id"  class="  form-control" placeholder="Enter room number" name="room_number" value="{{ $id}}" required >
+                                <input type="hidden" name="type"  class="  form-control" placeholder="Enter room number" name="room_number" value="MECHANICAL" required >
+
+                                
+                            
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('user_id', trans('quickadmin.clean.fields.employee').'', ['class' => 'control-label']) !!}
+                                        {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control select2']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('user_id'))
+                                            <p class="help-block">
+                                                {{ $errors->first('user_id') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('remarks', trans('quickadmin.clean.fields.remarks').'*', ['class' => 'control-label']) !!}
+                                        {!! Form::textarea('remarks', old('remarks'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('remarks'))
+                                            <p class="help-block">
+                                                {{ $errors->first('remarks') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                                {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-success']) !!}
+                            </div> 
+                            
+                        {!! Form::close() !!}
+                        
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
+                        <thead>
+                        <tr>
+                            <th>@lang('quickadmin.clean.fields.employee')</th>
+                            <th>@lang('quickadmin.clean.fields.date')</th>
+                            <th>@lang('quickadmin.clean.fields.remarks')</th>
+                            <th>@lang('quickadmin.clean.fields.assigned_at')</th>
+                           
+                            @if( request('show_deleted') == 1 )
+                                <th>&nbsp;</th>
+                            @else
+                                <th>&nbsp;</th>
+                            @endif
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @if (count($cleansBy_list) > 0)
+                        @foreach ($cleansBy_list as $cleansBy)
+                             @if($cleansBy->type =='MECHANICAL')    
+                                <tr data-entry-id="{{ $cleansBy->id }}">
+                                    <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
+                                   
+                                    @if( request('show_deleted') == 1 )
+                                        <td>
+                                            @can('booking_delete')
+                                                {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'POST',
+                                                'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                'route' => ['admin.bookings.restore', $cleansBy->id])) !!}
+                                                                                {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                                                                {!! Form::close() !!}
+                                                                            @endcan
+                                                                            @can('booking_delete')
+                                                                                {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'DELETE',
+                                                'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                'route' => ['admin.bookings.perma_del', $cleansBy->id])) !!}
+                                                                                {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                                                                {!! Form::close() !!}
+                                                                            @endcan
+                                        </td>
+                                    @else
+                                        <td>
+                                            @can('booking_view')
+                                                <a href="{{ route('admin.users.show',[$cleansBy->user_id]) }}"
+                                                   class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                            @endcan
+                                          
+                                            @can('booking_delete')
+                                                {!! Form::open(array(
+                                                                                        'style' => 'display: inline-block;',
+                                                                                        'method' => 'DELETE',
+                                                                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                                                        'route' => ['admin.clean.destroy', $cleansBy->id])) !!}
+                                                {!! Form::submit(trans('quickadmin.qa_remove'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                                {!! Form::close() !!}
+                                            @endcan
+                                        </td>
+                                    @endif
+                                </tr>
+                                @endif
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div role="tabpanel" class="tab-pane inactive" id="electrical">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
+                        @lang('quickadmin.qa_add_new')
+                    </button>
+
+                    <div class="modal fade" id="myModal2">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                        {!! Form::open(['method' => 'POST', 'files' => true, 'route' => ['admin.clean.store']]) !!}
+                        <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('date', trans('quickadmin.clean.fields.date').'*', ['class' => 'control-label']) !!}
+                                        {!! Form::date('date', old('date'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('date'))
+                                            <p class="help-block">
+                                                {{ $errors->first('date') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <input type="hidden" name="room_id"  class="  form-control" placeholder="Enter room number" name="room_number" value="{{ $id}}" required >
+                                <input type="hidden" name="type"  class="  form-control" placeholder="Enter room number" name="room_number" value="ELECTICAL" required >
+
+                                
+                            
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('user_id', trans('quickadmin.clean.fields.employee').'', ['class' => 'control-label']) !!}
+                                        {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control select2']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('user_id'))
+                                            <p class="help-block">
+                                                {{ $errors->first('user_id') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('remarks', trans('quickadmin.clean.fields.remarks').'*', ['class' => 'control-label']) !!}
+                                        {!! Form::textarea('remarks', old('remarks'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('remarks'))
+                                            <p class="help-block">
+                                                {{ $errors->first('remarks') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                                {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-success']) !!}
+                            </div> 
+                            
+                        {!! Form::close() !!}
+                        
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
+                        <thead>
+                        <tr>
+                            <th>@lang('quickadmin.clean.fields.employee')</th>
+                            <th>@lang('quickadmin.clean.fields.date')</th>
+                            <th>@lang('quickadmin.clean.fields.remarks')</th>
+                            <th>@lang('quickadmin.clean.fields.assigned_at')</th>
+                           
+                            @if( request('show_deleted') == 1 )
+                                <th>&nbsp;</th>
+                            @else
+                                <th>&nbsp;</th>
+                            @endif
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @if (count($cleansBy_list) > 0)
+                        @foreach ($cleansBy_list as $cleansBy)
+                             @if($cleansBy->type =='ELECTICAL')                       
+                                <tr data-entry-id="{{ $cleansBy->id }}">
+                                    <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
+                                   
+                                    @if( request('show_deleted') == 1 )
+                                        <td>
+                                            @can('booking_delete')
+                                                {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'POST',
+                                                'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                'route' => ['admin.bookings.restore', $cleansBy->id])) !!}
+                                                                                {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                                                                {!! Form::close() !!}
+                                                                            @endcan
+                                                                            @can('booking_delete')
+                                                                                {!! Form::open(array(
+                                                'style' => 'display: inline-block;',
+                                                'method' => 'DELETE',
+                                                'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                'route' => ['admin.bookings.perma_del', $cleansBy->id])) !!}
+                                                                                {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                                                                {!! Form::close() !!}
+                                                                            @endcan
+                                        </td>
+                                    @else
+                                        <td>
+                                            @can('booking_view')
+                                                <a href="{{ route('admin.users.show',[$cleansBy->user_id]) }}"
+                                                   class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                            @endcan
+                                          
+                                            @can('booking_delete')
+                                                {!! Form::open(array(
+                                                                                        'style' => 'display: inline-block;',
+                                                                                        'method' => 'DELETE',
+                                                                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                                                        'route' => ['admin.clean.destroy', $cleansBy->id])) !!}
+                                                {!! Form::submit(trans('quickadmin.qa_remove'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                                {!! Form::close() !!}
+                                            @endcan
+                                        </td>
+                                    @endif
+                                </tr>
+                                @endif
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+
+                <div role="tabpanel" class="tab-pane inactive" id="plumbing">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal3">
+                        @lang('quickadmin.qa_add_new')
+                    </button>
+
+                    <div class="modal fade" id="myModal3">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                        {!! Form::open(['method' => 'POST', 'files' => true, 'route' => ['admin.clean.store']]) !!}
+                        <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('date', trans('quickadmin.clean.fields.date').'*', ['class' => 'control-label']) !!}
+                                        {!! Form::date('date', old('date'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('date'))
+                                            <p class="help-block">
+                                                {{ $errors->first('date') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <input type="hidden" name="room_id"  class="  form-control" placeholder="Enter room number" name="room_number" value="{{ $id}}" required >
+                                <input type="hidden" name="type"  class="  form-control" placeholder="Enter room number" name="room_number" value="PLUMBING" required >
                                 
                                 
                             
@@ -221,6 +691,7 @@
                         <tbody>
                         @if (count($cleansBy_list) > 0)
                         @foreach ($cleansBy_list as $cleansBy)
+                            @if($cleansBy->type =='PLUMBING') 
                                 <tr data-entry-id="{{ $cleansBy->id }}">
                                     <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
@@ -267,6 +738,7 @@
                                         </td>
                                     @endif
                                 </tr>
+                                @endif
                             @endforeach
                         @else
                             <tr>

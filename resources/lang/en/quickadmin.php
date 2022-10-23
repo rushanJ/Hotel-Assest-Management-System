@@ -21,6 +21,8 @@ return [
 			'name' => 'Name',
 			'email' => 'Email',
 			'password' => 'Password',
+			'contactNo' => 'Contact No',
+			
 			'role' => 'Role',
 			'remember-token' => 'Remember token',
 		],
