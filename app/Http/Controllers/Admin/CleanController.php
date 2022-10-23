@@ -111,19 +111,19 @@ class CleanController extends Controller
 
         try {
             $client = new \GuzzleHttp\Client();
-            $res=$client->post(
-                'https://app.notify.lk/api/v1/send',
-                array(
-                    'form_params' => array(
-                        'user_id' => '23643',
-                        'api_key' => 'Dq6KcyMvbKVDt104JW26',
-                        'sender_id' => "NotifyDEMO",
-                        'to' => "94".$user->contactNo,
-                        'message' => $msgTxt
+            // $res=$client->post(
+            //     'https://app.notify.lk/api/v1/send',
+            //     array(
+            //         'form_params' => array(
+            //             'user_id' => '23643',
+            //             'api_key' => 'Dq6KcyMvbKVDt104JW26',
+            //             'sender_id' => "NotifyDEMO",
+            //             'to' => "94".$user->contactNo,
+            //             'message' => $msgTxt
                        
-                    )
-                )
-            );
+            //         )
+            //     )
+            // );
     
          
             } 
