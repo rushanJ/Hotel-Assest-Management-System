@@ -20,11 +20,12 @@ class BookingsController extends Controller
      */
     public function index()
     {
+       
         if (!Gate::allows('booking_access')) {
             return abort(401);
         }
 
-
+        // dd("sfdsadffsdf");
         if (request('show_deleted') == 1) {
             if (!Gate::allows('booking_delete')) {
                 return abort(401);
@@ -33,7 +34,7 @@ class BookingsController extends Controller
         } else {
             $bookings = Booking::all();
         }
-
+        // dd($bookings);
         return view('admin.bookings.index', compact('bookings'));
     }
 

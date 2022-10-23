@@ -49,14 +49,14 @@
                 <tbody>
                     @if (count($bookings) > 0)
                         @foreach ($bookings as $booking)
-                            <tr data-entry-id="{{ $booking->id }}">
+                        <tr data-entry-id="{{ $booking->id }}">
                                 @can('booking_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
 
                                 <td field-key='customer'>{{ $booking->customer->full_name or '' }}</td>
                                 <td field-key='room'>{{ $booking->room->room_number or '' }}</td>
-                                <td field-key='time_from'>{{ $booking->time_from }}</td>
+                                <td field-key='time_from'>{{ $booking->time_from or '' }}</td>
                                 <td field-key='time_to'>{{ $booking->time_to }}</td>
                                 <td field-key='additional_information'>{!! $booking->additional_information !!}</td>
                                 @if( request('show_deleted') == 1 )
@@ -69,7 +69,7 @@
                                         'route' => ['admin.bookings.restore', $booking->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
                                     {!! Form::close() !!}
-                                @endcan
+                                    @endcan
                                     @can('booking_delete')
                                                                         {!! Form::open(array(
                                         'style' => 'display: inline-block;',
@@ -78,7 +78,7 @@
                                         'route' => ['admin.bookings.perma_del', $booking->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                @endcan
+                                    @endcan
                                 </td>
                                 @else
                                 <td>
@@ -89,7 +89,7 @@
                                     <a href="{{ route('admin.bookings.edit',[$booking->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('booking_delete')
-{!! Form::open(array(
+                                        {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
