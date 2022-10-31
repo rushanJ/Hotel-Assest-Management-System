@@ -48,7 +48,10 @@ return [
 		'title' => 'Clean',
 		'fields' => [
 			'title' => 'Title',
+			'type' => 'Type',
 			'assigned_at' => 'Assigned At',
+			'regular' => 'Regular',
+			'irregular' => 'Irregular',
 			'employee' => 'Employee ',
 			'date' => 'Date',
 			'remarks' => 'Remarks',

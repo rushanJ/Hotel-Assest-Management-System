@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('simple_user_access', function ($user) {
-            return in_array($user->role_id, [2]);
+            return !in_array($user->role_id, [2]);
         });
 
         // Auth gates for: Roles

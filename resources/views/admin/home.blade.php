@@ -72,7 +72,7 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <a href="users" class="text-success mr-2"><i class="fa fa-arrow-up"></i> Click Here</a>
+                    <a href="bookings" class="text-success mr-2"><i class="fa fa-arrow-up"></i> Click Here</a>
               
                   </p>
                 </div>
@@ -93,7 +93,7 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <a href="users" class="text-success mr-2"><i class="fa fa-arrow-up"></i> Click Here</a>
+                    <a href="https://app.notify.lk/dashboard" class="text-success mr-2"><i class="fa fa-arrow-up"></i> Click Here</a>
               
                   </p>
                 </div>
@@ -115,12 +115,13 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Today Service List</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Today Service Lis ({{count($cleansBy_list)}})</h5>
                        <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
                         <thead>
                         <tr>
                             <th>@lang('quickadmin.clean.fields.employee')</th>
                             <th>@lang('quickadmin.clean.fields.date')</th>
+                            <th>@lang('quickadmin.clean.fields.type')</th>
                             <th>@lang('quickadmin.clean.fields.remarks')</th>
                             <th>@lang('quickadmin.clean.fields.assigned_at')</th>
                            
@@ -135,6 +136,7 @@
                                 <tr data-entry-id="{{ $cleansBy->id }}">
                                     <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->type or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    
@@ -165,8 +167,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Employees</h5>
-                      <span class="h2 font-weight-bold mb-0">{{count($user)}}</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Last Month Bookings</h5>
+                      <span class="h2 font-weight-bold mb-0">{{count($lastMonthBookings)}}</span>
                       
                         <figure class="highcharts-figure">
                           <div id="container"></div>

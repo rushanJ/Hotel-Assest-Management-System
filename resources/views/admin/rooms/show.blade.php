@@ -187,6 +187,19 @@
 
                                 <div class="row">
                                     <div class="col-xs-12 form-group">
+                                        {!! Form::label('is_regular', trans('quickadmin.clean.fields.type').'', ['class' => 'control-label']) !!}
+                                        {!! Form::select('is_regular', array('REGULAR' => 'Regular','IRREGULAR' => 'Irregular',), old('user_id'), ['class' => 'form-control select2']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('user_id'))
+                                            <p class="help-block">
+                                                {{ $errors->first('user_id') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
                                         {!! Form::label('remarks', trans('quickadmin.clean.fields.remarks').'*', ['class' => 'control-label']) !!}
                                         {!! Form::textarea('remarks', old('remarks'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
                                         <p class="help-block"></p>
@@ -217,6 +230,7 @@
                         <tr>
                             <th>@lang('quickadmin.clean.fields.employee')</th>
                             <th>@lang('quickadmin.clean.fields.date')</th>
+                            <th>@lang('quickadmin.clean.fields.type')</th>
                             <th>@lang('quickadmin.clean.fields.remarks')</th>
                             <th>@lang('quickadmin.clean.fields.assigned_at')</th>
                            
@@ -235,6 +249,7 @@
                                 <tr data-entry-id="{{ $cleansBy->id }}">
                                     <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->is_regular or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    
@@ -337,6 +352,18 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                        {!! Form::label('is_regular', trans('quickadmin.clean.fields.type').'', ['class' => 'control-label']) !!}
+                                        {!! Form::select('is_regular', array('REGULAR' => 'Regular','IRREGULAR' => 'Irregular',), old('user_id'), ['class' => 'form-control select2']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('user_id'))
+                                            <p class="help-block">
+                                                {{ $errors->first('user_id') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-xs-12 form-group">
@@ -370,6 +397,7 @@
                         <tr>
                             <th>@lang('quickadmin.clean.fields.employee')</th>
                             <th>@lang('quickadmin.clean.fields.date')</th>
+                            <th>@lang('quickadmin.clean.fields.type')</th>
                             <th>@lang('quickadmin.clean.fields.remarks')</th>
                             <th>@lang('quickadmin.clean.fields.assigned_at')</th>
                            
@@ -388,6 +416,7 @@
                                 <tr data-entry-id="{{ $cleansBy->id }}">
                                     <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->is_regular or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    
@@ -494,6 +523,19 @@
 
                                 <div class="row">
                                     <div class="col-xs-12 form-group">
+                                        {!! Form::label('is_regular', trans('quickadmin.clean.fields.type').'', ['class' => 'control-label']) !!}
+                                        {!! Form::select('is_regular', array('REGULAR' => 'Regular','IRREGULAR' => 'Irregular',), old('user_id'), ['class' => 'form-control select2']) !!}
+                                        <p class="help-block"></p>
+                                        @if($errors->has('user_id'))
+                                            <p class="help-block">
+                                                {{ $errors->first('user_id') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 form-group">
                                         {!! Form::label('remarks', trans('quickadmin.clean.fields.remarks').'*', ['class' => 'control-label']) !!}
                                         {!! Form::textarea('remarks', old('remarks'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
                                         <p class="help-block"></p>
@@ -524,6 +566,7 @@
                         <tr>
                             <th>@lang('quickadmin.clean.fields.employee')</th>
                             <th>@lang('quickadmin.clean.fields.date')</th>
+                            <th>@lang('quickadmin.clean.fields.type')</th>
                             <th>@lang('quickadmin.clean.fields.remarks')</th>
                             <th>@lang('quickadmin.clean.fields.assigned_at')</th>
                            
@@ -541,7 +584,8 @@
                              @if($cleansBy->type =='ELECTICAL')                       
                                 <tr data-entry-id="{{ $cleansBy->id }}">
                                     <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
-                                    <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->date or '' }}</td>  
+                                    <td field-key='type'>{{ $cleansBy->is_regular or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    

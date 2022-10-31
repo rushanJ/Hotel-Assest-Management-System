@@ -34,10 +34,11 @@ class HomeController extends Controller
     public function index()
     {
         // dd($id=Auth::user()->role->id);
-        if ($id=Auth::user()->role->id==2){
+        if ($id=Auth::user()->role->id!=1){
             $id=Auth::user()->id;
-            $cleans_list = \DB::select("SELECT `cleans`.`id`,`rooms`.`room_number`, `cleans`. `date`, `cleans`.`remarks`, `cleans`.`status`, `cleans`.`created_at`, `cleans`.`updated_at` FROM `cleans`,`rooms` WHERE `cleans`.`room_id`=`rooms`.`id` AND `cleans`.`user_id`=$id ORDER BY `status`;");
-
+          
+            $cleans_list = \DB::select("SELECT `cleans`.`id`,`rooms`.`room_number`, `cleans`. `date`, `cleans`.`remarks`, `cleans`.`status`, `cleans`.`created_at`, `cleans`.`updated_at` FROM `cleans`,`rooms` WHERE `cleans`.`room_id`=`rooms`.`id` AND `cleans`.`user_id`=$id ORDER BY `status` DESC;");
+            //   dd($cleans_list);
             return view('home', compact('cleans_list'));
         }
         else {

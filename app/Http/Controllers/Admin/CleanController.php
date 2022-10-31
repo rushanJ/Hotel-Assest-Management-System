@@ -9,8 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCleanRequest;
 use App\Http\Requests\Admin\UpdateRoomsRequest;
 use App\Item;
-
-
 use App\User;
 use App\Clean;
 
@@ -79,8 +77,8 @@ class CleanController extends Controller
             return abort(401);
         }
 
-       
-       $item = Clean::create(['user_id'=> $request["user_id"],'room_id'=>$request["room_id"],'date'=>$request["date"],'remarks'=>$request["remarks"],'type'=>$request["type"]]);
+    //    dd(['user_id'=> $request["user_id"],'room_id'=>$request["room_id"],'date'=>$request["date"],'remarks'=>$request["remarks"],'type'=>$request["type"],'is_regular'=>$request["is_regular"]]);
+       $item = Clean::create(['user_id'=> $request["user_id"],'room_id'=>$request["room_id"],'date'=>$request["date"],'remarks'=>$request["remarks"],'type'=>$request["type"],'is_regular'=>$request["is_regular"]]);
        $user = User::findOrFail($request["user_id"]);
        $room = Room::find($request["room_id"]);
        
