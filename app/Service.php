@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     //
-    protected $fillable = ['item_id','comment'];
+    protected $fillable = ['item_id','comment','type'];
     
     public function serviceBy()
     {

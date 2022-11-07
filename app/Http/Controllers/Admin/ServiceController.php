@@ -73,8 +73,7 @@ class ServiceController extends Controller
             return abort(401);
         }
 
-        // dd(['serialNo'=> $request["serialNo"],'name'=>$request["name"],'model'=>$request["model"],'brand'=>$request["brand"],'supplierId'=>$request["supplierId"],'roomId'=>$request["roomId"],'description'=>$request["description"]]);
-       $item = Service::create(['item_id'=> $request["item_id"],'comment'=>$request["remarks"],'status'=>'PENDING']);
+       $item = Service::create(['item_id'=> $request["item_id"],'type'=>$request["type"],'comment'=>$request["remarks"],'status'=>'PENDING']);
 
        try {
         $client = new \GuzzleHttp\Client();
@@ -83,7 +82,7 @@ class ServiceController extends Controller
             array(
                 'form_params' => array(
                     'email' => $request["email"],
-                    'subject' => 'Service Item ',
+                    'subject' => 'Service Item ( '.$request["type"].' )',
                     'message' => $request["remarks"]
                 )
             )
@@ -127,9 +126,6 @@ class ServiceController extends Controller
         if (! Gate::allows('room_edit')) {
             return abort(401);
         }
-        $room = Room::findOrFail($id);
-        // $room->update($request->all());
-        $room->update( ['room_number'=> $request["room_number"],'cardId'=>$request["cardId"],'price'=>$request["price"],'guestCount'=>$request["guestCount"],'category_id'=>$request["category_id"],'floor'=>$request["floor"],'description'=>$request["description"] ]);
        
 
         return redirect()->route('admin.rooms.index');

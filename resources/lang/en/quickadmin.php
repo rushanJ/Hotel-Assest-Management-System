@@ -105,6 +105,7 @@ return [
 			'name' => 'Name',
 			'description' => 'Description',
 			'model' => 'Model',
+			'type' => 'Type',
 			'brand' => 'Brand',
 			'serialNo' => 'Serial number',
 			'supplier' => 'Supplier',

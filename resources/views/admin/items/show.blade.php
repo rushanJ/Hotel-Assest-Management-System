@@ -78,6 +78,16 @@
                             <input type="hidden" name="item_id"  class="  form-control"  name="item_id" value="{{ $id}}" required >
                             <input type="hidden" name="email"  class="  form-control" placeholder="Enter room number" name="room_number" value="{{ $supplier->email }}" required >
 
+                         
+                            <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                    {!! Form::label('type', trans('quickadmin.item.fields.type').'', ['class' => 'control-label']) !!}
+                                        {!! Form::select('type', array('CLEANING' => 'Cleaning','MECHANICAL' => 'Mechanical','ELECTRICAL' => 'Electrical','PLUMBING' => 'Plumbing'), old('type'), ['class' => 'form-control select2']) !!}
+                                        <p class="help-block"></p>
+                                       
+                                    </div>
+                                </div>
+
                             <div class="row">
                                 <div class="col-xs-12 form-group">
                                     {!! Form::label('remarks', trans('quickadmin.clean.fields.remarks').'*', ['class' => 'control-label']) !!}
@@ -110,6 +120,7 @@
                     <tr>
                         <th>@lang('quickadmin.service.fields.comment')</th>
                         <th>@lang('quickadmin.service.fields.status')</th>
+                        <th>@lang('quickadmin.service.fields.type')</th>
                         <th>@lang('quickadmin.service.fields.createdDate')</th>
                      
                     
@@ -126,6 +137,7 @@
                         @foreach ($services as $service)
                             <tr data-entry-id="{{ $service->id }}">
                                 <td field-key='customer'>{{ $service->comment or '' }}</td>
+                                <td field-key='customer'>{{ $service->type or '' }}</td>
                                 <td field-key='customer'>{{ $service->status or '' }}</td>
                                 <td field-key='customer'>{{ $service->created_at or '' }}</td>
                               
