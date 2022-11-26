@@ -116,7 +116,10 @@ class UsersController extends Controller
         }
         $user = User::findOrFail($id);
 
-        return view('admin.users.show', compact('user'));
+        $cleansBy_list = \DB::select("SELECT `cleans`.`date`,`cleans`.`is_regular`,`cleans`.`type`,`cleans`.`user_id`,`cleans`.`room_id`,`cleans`.`id`,`cleans`.`remarks`,`cleans`.`created_at`,`users`.`name`,`rooms`.`room_number` FROM `cleans`,`users`,`rooms` WHERE cleans.user_id=users.id AND `cleans`.`room_id`=`rooms`.`id` AND `cleans`.`user_id`=$id");
+        // dd($cleansBy_list);
+
+        return view('admin.users.show', compact('user','cleansBy_list'));
     }
 
 

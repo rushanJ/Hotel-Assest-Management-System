@@ -238,9 +238,10 @@ class CleanController extends Controller
      */
     public function done($id,Request $request)
     {
+      
         $clean = Clean::findOrFail($id);
         // $room->update($request->all());
-        $clean->update( ['status'=>'DONE' ]);
+        // $clean->update( ['status'=>'DONE' ]);
      
         $room = Room::findOrFail($clean->room_id);
         //  dd($room );
@@ -254,9 +255,47 @@ class CleanController extends Controller
                 'http://critssl.com/email/',
                 array(
                     'form_params' => array(
-                        'email' => "mapalagamageethmi@gmail.com",
+                        // 'email' => "mapalagamageethmi@gmail.com",
+                        'email' => "rushanthasindu10@gmail.com",
                         'subject' => 'Cleaning Done',
                         'message' => "Property : " .$room->room_number
+                    )
+                )
+            );
+    
+         
+        } 
+        catch (Swift_TransportException $e) {
+            echo $e->getMessage();
+        }
+
+        return back();
+    }
+
+    public function doneWithRemark(Request $request)
+    {
+        $clean = Clean::findOrFail($request["id"]);
+        // $room->update($request->all());
+        $clean->update( ['status'=>'DONE' ]);
+        $clean->update( ['employeeRemarks'=>$request["remarks"] ]);
+     
+        $room = Room::findOrFail($clean->room_id);
+        //  dd($room );
+        Clean::where('id', $request["id"])
+        ->update([
+               'status' => 'DONE'
+        ]);
+        try {
+            $client = new \GuzzleHttp\Client();
+            $client->post(
+                'http://critssl.com/email/',
+                array(
+                    'form_params' => array(
+                        'email' => "mapalagamageethmi@gmail.com",
+                        // 'email' => "rushanthasindu10@gmail.com",
+                        'subject' => 'Cleaning Done',
+                        'message' => "Property : " .$room->room_number.'
+Remarks From Employee : ' .$request["remarks"]
                     )
                 )
             );

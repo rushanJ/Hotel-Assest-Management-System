@@ -18,7 +18,10 @@
                             </ul>
                         </div>
                     @endif
-
+                        <img src="images/logo.png" alt="logo" center style=" width: 200px;position: relative;
+  
+  left: 42%;
+" />
                     <form class="form-horizontal"
                           role="form"
                           method="POST"

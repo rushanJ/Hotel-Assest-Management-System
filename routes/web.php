@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
 
     Route::resource('service', 'Admin\ServiceController');
-    Route::get('room_clean_done/{id}', ['uses' => 'Admin\CleanController@done', 'as' => 'clean.done']);
+    Route::get('room_clean_done', ['uses' => 'Admin\CleanController@doneWithRemark', 'as' => 'clean.done2']);
     Route::post('rooms_restore/{id}', ['uses' => 'Admin\RoomsController@restore', 'as' => 'rooms.restore']);
     Route::delete('rooms_perma_del/{id}', ['uses' => 'Admin\RoomsController@perma_del', 'as' => 'rooms.perma_del']);
 

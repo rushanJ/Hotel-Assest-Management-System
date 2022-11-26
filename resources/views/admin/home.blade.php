@@ -115,7 +115,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Today Service Lis ({{count($cleansBy_list)}})</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Today Service List ({{count($cleansBy_list)}})</h5>
                        <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
                         <thead>
                         <tr>
