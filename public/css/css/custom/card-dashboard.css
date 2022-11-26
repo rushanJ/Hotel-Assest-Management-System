@@ -572,11 +572,11 @@
   }
   
   .bg-gradient-primary {
-    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+    background: linear-gradient(87deg, #000000 0, #000000 100%) !important;
   }
   
   .bg-gradient-primary {
-    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+    background: linear-gradient(87deg, #222d32 0, #222d32 100%) !important;
   }
   
   @keyframes floating-lg {
