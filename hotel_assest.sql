@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 08:18 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.28
+-- Generation Time: Nov 29, 2022 at 10:18 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bookings` (
   `id` int(10) UNSIGNED NOT NULL,
-  `time_from` datetime DEFAULT NULL,
+  `time_from` timestamp NULL DEFAULT NULL,
   `time_to` datetime DEFAULT NULL,
   `additional_information` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -44,42 +44,43 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `time_from`, `time_to`, `additional_information`, `created_at`, `updated_at`, `deleted_at`, `customer_id`, `room_id`) VALUES
-(7, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:24:34', '2022-04-26 08:24:34', NULL, 24, 16),
-(8, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:24:58', '2022-04-26 08:24:58', NULL, 25, 16),
-(9, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:25:40', '2022-04-26 08:25:40', NULL, 26, 16),
-(10, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:25:57', '2022-04-26 08:25:57', NULL, 27, 16),
-(11, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:27:39', '2022-04-26 08:27:39', NULL, 28, 16),
-(12, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:45:44', '2022-05-12 02:07:43', '2022-05-12 02:07:43', 29, 16),
-(13, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:46:20', '2022-05-12 02:07:43', '2022-05-12 02:07:43', 30, 16),
-(14, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:46:37', '2022-05-12 02:07:43', '2022-05-12 02:07:43', 31, 16),
-(15, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:47:45', '2022-05-12 02:08:06', NULL, 28, 16),
-(16, '2022-04-13 00:00:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:47:56', '2022-04-29 05:07:54', '2022-04-29 05:07:54', 33, 16),
-(17, '2022-04-29 15:00:00', '2022-04-30 10:30:00', 'jfchgfgfhthruydtetyutftghbgsdfsedaretyerfsdvcnghjfgdfx', '2022-04-29 05:06:10', '2022-04-29 14:10:11', '2022-04-29 14:10:11', 34, 20),
-(18, '2022-04-29 16:15:00', '2022-04-29 16:15:00', 'FSDGFHJKHJUIUYURTEWADASDGFHDAWERE', '2022-04-29 05:15:18', '2022-04-29 14:10:20', '2022-04-29 14:10:20', 35, 22),
-(19, '2022-04-29 16:15:00', '2022-04-30 16:15:00', 'wQWGEWYUDFYUFGUYFHDBHF', '2022-04-29 05:16:13', '2022-04-29 14:10:25', '2022-04-29 14:10:25', 37, 23),
-(20, '2022-04-30 08:00:00', '2022-05-01 08:00:00', 'Card payment', '2022-04-29 14:11:54', '2022-04-29 14:11:54', NULL, 34, 24),
-(21, '2022-04-30 09:00:00', '2022-05-01 07:30:00', 'Card payment', '2022-04-29 14:13:08', '2022-04-29 14:13:08', NULL, 35, 25),
-(22, '2022-04-30 06:30:00', '2022-04-30 22:00:00', 'Cash payment', '2022-04-29 14:14:10', '2022-04-29 14:14:10', NULL, 37, 27),
-(23, '2022-04-30 18:30:00', '2022-05-02 07:00:00', 'Card payment', '2022-04-29 14:15:15', '2022-04-29 14:15:15', NULL, 38, 24),
-(24, '2022-04-30 13:30:00', '2022-05-01 14:45:00', 'Card payment', '2022-04-29 14:16:09', '2022-04-29 14:16:09', NULL, 39, 26),
-(25, '2022-05-03 00:00:00', '2022-05-04 00:00:00', 'None', '2022-05-03 11:42:43', '2022-05-03 11:42:43', NULL, 40, 34),
-(26, '2022-05-01 00:00:00', '2022-05-03 00:00:00', 'nothing', '2022-05-04 12:13:21', '2022-05-04 12:13:21', NULL, 41, 27),
-(27, '2022-05-22 00:00:00', '2022-05-29 00:00:00', 'sedfsfdf', '2022-05-12 00:00:53', '2022-05-12 00:00:53', NULL, 42, 26),
-(28, '2022-05-17 00:00:00', '2022-05-25 00:00:00', 'hfsgy', '2022-05-26 06:36:27', '2022-05-26 06:36:27', NULL, 43, 26),
-(29, '2022-05-23 00:00:00', '2022-05-27 00:00:00', 'Non', '2022-05-31 03:29:51', '2022-05-31 03:29:51', NULL, 44, 26),
-(30, '2022-05-03 00:00:00', '2022-05-18 00:00:00', NULL, '2022-06-01 01:08:40', '2022-06-01 01:08:40', NULL, 45, 25),
-(31, '2022-05-03 00:00:00', '2022-05-18 00:00:00', NULL, '2022-06-01 01:08:40', '2022-06-01 01:08:40', NULL, 46, 25),
-(32, '2022-05-03 00:00:00', '2022-05-18 00:00:00', NULL, '2022-06-01 01:08:40', '2022-06-01 01:08:40', NULL, 47, 25),
-(33, '2022-05-02 00:00:00', '2022-05-18 00:00:00', 'None', '2022-06-01 03:30:26', '2022-06-01 03:30:26', NULL, 48, 35),
-(34, '2022-05-02 00:00:00', '2022-05-18 00:00:00', 'None', '2022-06-01 03:30:26', '2022-06-01 03:30:26', NULL, 49, 35),
-(35, '2022-05-02 00:00:00', '2022-05-18 00:00:00', 'None', '2022-06-01 03:30:59', '2022-06-01 03:30:59', NULL, 50, 35),
-(36, '2022-05-03 00:00:00', '2022-05-18 00:00:00', NULL, '2022-06-01 08:17:00', '2022-06-01 08:17:00', NULL, 51, 26),
-(37, '2022-07-02 00:00:00', '2022-06-27 00:00:00', NULL, '2022-06-02 01:00:19', '2022-06-02 01:00:19', NULL, 52, 16),
-(38, '2022-08-30 18:51:00', '2022-10-06 18:51:00', 'TEST', '2022-08-30 07:51:27', '2022-08-30 07:51:27', NULL, 25, 28),
-(39, '2022-08-31 23:19:00', '2022-09-01 23:19:00', 'ghfgh', '2022-08-30 12:19:56', '2022-08-30 12:19:56', NULL, 26, 30),
-(40, '2022-08-31 23:22:00', '2022-09-01 23:22:00', 'fdgfgfgdfg', '2022-08-30 12:22:53', '2022-08-30 12:22:53', NULL, 26, 36),
-(41, '2022-08-31 23:24:00', '2022-09-01 23:24:00', 'vhchgyhfgh', '2022-08-30 12:26:27', '2022-08-30 12:26:27', NULL, 27, 37),
-(42, '2022-08-31 11:35:00', '2022-09-01 11:35:00', 'romm', '2022-08-31 00:35:23', '2022-08-31 00:35:23', NULL, 24, 16);
+(7, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:24:34', '2022-04-26 08:24:34', NULL, 24, 16),
+(8, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:24:58', '2022-04-26 08:24:58', NULL, 25, 16),
+(9, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:25:40', '2022-04-26 08:25:40', NULL, 26, 16),
+(10, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:25:57', '2022-04-26 08:25:57', NULL, 27, 16),
+(11, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:27:39', '2022-04-26 08:27:39', NULL, 28, 16),
+(12, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:45:44', '2022-05-12 02:07:43', '2022-05-12 02:07:43', 29, 16),
+(13, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:46:20', '2022-05-12 02:07:43', '2022-05-12 02:07:43', 30, 16),
+(14, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:46:37', '2022-05-12 02:07:43', '2022-05-12 02:07:43', 31, 16),
+(15, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:47:45', '2022-05-12 02:08:06', NULL, 28, 16),
+(16, '2022-04-12 18:30:00', '2022-04-29 00:00:00', 'fghdftd', '2022-04-26 08:47:56', '2022-04-29 05:07:54', '2022-04-29 05:07:54', 33, 16),
+(17, '2022-04-28 18:30:00', '2022-04-30 10:30:00', 'jfchgfgfhthruydtetyutftghbgsdfsedaretyerfsdvcnghjfgdfx', '2022-04-29 05:06:10', '2022-04-29 14:10:11', '2022-04-29 14:10:11', 34, 20),
+(18, '2022-04-28 18:30:00', '2022-04-29 16:15:00', 'FSDGFHJKHJUIUYURTEWADASDGFHDAWERE', '2022-04-29 05:15:18', '2022-04-29 14:10:20', '2022-04-29 14:10:20', 35, 22),
+(19, '2022-04-28 18:30:00', '2022-04-30 16:15:00', 'wQWGEWYUDFYUFGUYFHDBHF', '2022-04-29 05:16:13', '2022-04-29 14:10:25', '2022-04-29 14:10:25', 37, 23),
+(20, '2022-04-29 18:30:00', '2022-05-01 08:00:00', 'Card payment', '2022-04-29 14:11:54', '2022-04-29 14:11:54', NULL, 34, 24),
+(21, '2022-04-29 18:30:00', '2022-05-01 07:30:00', 'Card payment', '2022-04-29 14:13:08', '2022-04-29 14:13:08', NULL, 35, 25),
+(22, '2022-04-29 18:30:00', '2022-04-30 22:00:00', 'Cash payment', '2022-04-29 14:14:10', '2022-04-29 14:14:10', NULL, 37, 27),
+(23, '2022-04-29 18:30:00', '2022-05-02 07:00:00', 'Card payment', '2022-04-29 14:15:15', '2022-04-29 14:15:15', NULL, 38, 24),
+(24, '2022-04-29 18:30:00', '2022-05-01 14:45:00', 'Card payment', '2022-04-29 14:16:09', '2022-04-29 14:16:09', NULL, 39, 26),
+(25, '2022-05-02 18:30:00', '2022-05-04 00:00:00', 'None', '2022-05-03 11:42:43', '2022-05-03 11:42:43', NULL, 40, 34),
+(26, '2022-04-30 18:30:00', '2022-05-03 00:00:00', 'nothing', '2022-05-04 12:13:21', '2022-05-04 12:13:21', NULL, 41, 27),
+(27, '2022-05-21 18:30:00', '2022-05-29 00:00:00', 'sedfsfdf', '2022-05-12 00:00:53', '2022-05-12 00:00:53', NULL, 42, 26),
+(28, '2022-05-16 18:30:00', '2022-05-25 00:00:00', 'hfsgy', '2022-05-26 06:36:27', '2022-05-26 06:36:27', NULL, 43, 26),
+(29, '2022-05-22 18:30:00', '2022-05-27 00:00:00', 'Non', '2022-05-31 03:29:51', '2022-05-31 03:29:51', NULL, 44, 26),
+(30, '2022-05-02 18:30:00', '2022-05-18 00:00:00', NULL, '2022-06-01 01:08:40', '2022-06-01 01:08:40', NULL, 45, 25),
+(31, '2022-05-02 18:30:00', '2022-05-18 00:00:00', NULL, '2022-06-01 01:08:40', '2022-06-01 01:08:40', NULL, 46, 25),
+(32, '2022-05-02 18:30:00', '2022-05-18 00:00:00', NULL, '2022-06-01 01:08:40', '2022-06-01 01:08:40', NULL, 47, 25),
+(33, '2022-05-01 18:30:00', '2022-05-18 00:00:00', 'None', '2022-06-01 03:30:26', '2022-06-01 03:30:26', NULL, 48, 35),
+(34, '2022-05-01 18:30:00', '2022-05-18 00:00:00', 'None', '2022-06-01 03:30:26', '2022-06-01 03:30:26', NULL, 49, 35),
+(35, '2022-05-01 18:30:00', '2022-05-18 00:00:00', 'None', '2022-06-01 03:30:59', '2022-06-01 03:30:59', NULL, 50, 35),
+(36, '2022-05-02 18:30:00', '2022-05-18 00:00:00', NULL, '2022-06-01 08:17:00', '2022-06-01 08:17:00', NULL, 51, 26),
+(37, '2022-07-01 18:30:00', '2022-06-27 00:00:00', NULL, '2022-06-02 01:00:19', '2022-06-02 01:00:19', NULL, 52, 16),
+(38, '2022-08-29 18:30:00', '2022-10-06 18:51:00', 'TEST', '2022-08-30 07:51:27', '2022-08-30 07:51:27', NULL, 25, 28),
+(39, '2022-09-18 18:30:00', '2022-09-01 23:19:00', 'ghfgh', '2022-08-30 12:19:56', '2022-08-30 12:19:56', NULL, 26, 30),
+(40, '2022-10-18 18:30:00', '2022-09-01 23:22:00', 'fdgfgfgdfg', '2022-09-29 12:22:53', '2022-08-30 12:22:53', NULL, 26, 36),
+(41, '2022-09-29 18:30:00', '2022-09-01 23:24:00', 'vhchgyhfgh', '2022-09-30 12:26:27', '2022-08-30 12:26:27', NULL, 27, 37),
+(42, '2022-10-18 18:30:00', '2022-09-01 11:35:00', 'romm', '2022-09-30 00:35:23', '2022-08-31 00:35:23', NULL, 24, 16),
+(43, '2022-10-21 18:30:00', '2022-10-23 05:02:00', 'dfds', '2022-10-22 18:03:14', '2022-10-22 18:03:14', NULL, 25, 28);
 
 -- --------------------------------------------------------
 
@@ -121,6 +122,10 @@ CREATE TABLE `cleans` (
   `room_id` int(10) UNSIGNED NOT NULL,
   `date` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remarks` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `employeeRemarks` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `missingItems` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_regular` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -130,30 +135,56 @@ CREATE TABLE `cleans` (
 -- Dumping data for table `cleans`
 --
 
-INSERT INTO `cleans` (`id`, `user_id`, `room_id`, `date`, `remarks`, `status`, `created_at`, `updated_at`) VALUES
-(8, 24, 29, '2022-08-27', 'test remark', 'DONE', '2022-08-25 23:51:16', '2022-08-26 04:33:42'),
-(9, 24, 16, '2022-08-26', 'cleaning,washing', 'DONE', '2022-08-26 04:11:06', '2022-08-26 04:33:38'),
-(10, 24, 16, '2022-08-26', '1.Clean AC\r\n2.Change lights', 'DONE', '2022-08-26 09:14:08', '2022-08-30 07:19:05'),
-(11, 24, 16, '2022-08-31', 'clean the room', 'PENDING', '2022-08-30 07:18:27', '2022-08-30 07:18:27'),
-(12, 24, 16, '2022-08-31', 'clean the room', 'PENDING', '2022-08-30 07:18:31', '2022-08-30 07:18:31'),
-(13, 24, 16, '2022-08-30', 'clean', 'PENDING', '2022-08-30 11:27:15', '2022-08-30 11:27:15'),
-(14, 24, 41, '2022-08-31', 'cleans', 'PENDING', '2022-08-30 11:28:55', '2022-08-30 11:28:55'),
-(15, 24, 41, '2022-08-31', 'cleans', 'PENDING', '2022-08-30 11:28:57', '2022-08-30 11:28:57'),
-(16, 24, 40, '2022-08-30', 'clean', 'PENDING', '2022-08-30 11:30:15', '2022-08-30 11:30:15'),
-(18, 24, 36, '2022-08-30', 'clean', 'PENDING', '2022-08-30 12:06:33', '2022-08-30 12:06:33'),
-(19, 24, 30, '2022-08-30', 'clean', 'PENDING', '2022-08-30 12:07:04', '2022-08-30 12:07:04'),
-(20, 24, 16, '2022-08-30', 'clean', 'PENDING', '2022-08-30 12:07:31', '2022-08-30 12:07:31'),
-(21, 25, 28, '2022-08-31', 'test', 'PENDING', '2022-08-30 12:15:21', '2022-08-30 12:15:21'),
-(22, 5, 37, '2022-08-31', 'dfgdfg', 'PENDING', '2022-08-30 12:23:47', '2022-08-30 12:23:47'),
-(23, 26, 38, '2022-08-31', 'test', 'PENDING', '2022-08-30 12:28:50', '2022-08-30 12:28:50'),
-(24, 25, 39, '2022-09-01', 'Sdsd', 'PENDING', '2022-08-30 12:38:55', '2022-08-30 12:38:55'),
-(25, 25, 39, '2022-09-02', 'fghrf', 'PENDING', '2022-08-30 12:43:36', '2022-08-30 12:43:36'),
-(26, 25, 28, '2022-08-31', 'clean', 'PENDING', '2022-08-30 12:47:05', '2022-08-30 12:47:05'),
-(27, 25, 28, '2022-08-31', 'clean', 'PENDING', '2022-08-30 12:49:04', '2022-08-30 12:49:04'),
-(28, 25, 28, '2022-08-31', 'clean', 'PENDING', '2022-08-30 23:29:05', '2022-08-30 23:29:05'),
-(29, 24, 16, '2022-08-31', 'clean', 'PENDING', '2022-08-31 00:27:51', '2022-08-31 00:27:51'),
-(30, 27, 16, '2022-08-31', 'clean', 'PENDING', '2022-08-31 00:30:20', '2022-08-31 00:30:20'),
-(31, 25, 16, '2022-08-31', 'clean', 'PENDING', '2022-08-31 00:31:58', '2022-08-31 00:31:58');
+INSERT INTO `cleans` (`id`, `user_id`, `room_id`, `date`, `remarks`, `employeeRemarks`, `missingItems`, `type`, `is_regular`, `status`, `created_at`, `updated_at`) VALUES
+(8, 24, 29, '2022-08-27', 'test remark', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-25 23:51:16', '2022-08-26 04:33:42'),
+(9, 24, 16, '2022-08-26', 'cleaning,washing', '255', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-26 04:11:06', '2022-08-26 04:33:38'),
+(10, 24, 16, '2022-08-26', '1.Clean AC\r\n2.Change lights', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-26 09:14:08', '2022-08-30 07:19:05'),
+(11, 24, 16, '2022-08-31', 'clean the room', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 07:18:27', '2022-10-31 15:12:19'),
+(12, 24, 16, '2022-08-31', 'clean the room', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 07:18:31', '2022-10-31 15:13:43'),
+(13, 24, 16, '2022-08-30', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 11:27:15', '2022-10-31 15:12:23'),
+(14, 24, 41, '2022-08-31', 'cleans', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 11:28:55', '2022-10-31 15:13:34'),
+(15, 24, 41, '2022-08-31', 'cleans', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 11:28:57', '2022-10-31 15:13:36'),
+(16, 24, 40, '2022-08-30', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 11:30:15', '2022-10-31 15:13:38'),
+(18, 24, 36, '2022-08-30', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 12:06:33', '2022-10-31 15:13:42'),
+(19, 24, 30, '2022-08-30', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 12:07:04', '2022-10-31 15:13:45'),
+(20, 24, 16, '2022-08-30', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-30 12:07:31', '2022-10-31 15:13:47'),
+(21, 25, 28, '2022-08-31', 'test', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-30 12:15:21', '2022-08-30 12:15:21'),
+(22, 5, 37, '2022-08-31', 'dfgdfg', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-30 12:23:47', '2022-08-30 12:23:47'),
+(23, 26, 38, '2022-08-31', 'test', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-30 12:28:50', '2022-08-30 12:28:50'),
+(24, 25, 39, '2022-09-01', 'Sdsd', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-30 12:38:55', '2022-08-30 12:38:55'),
+(25, 25, 39, '2022-09-02', 'fghrf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-30 12:43:36', '2022-08-30 12:43:36'),
+(26, 25, 28, '2022-08-31', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-30 12:47:05', '2022-08-30 12:47:05'),
+(27, 25, 28, '2022-08-31', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-30 12:49:04', '2022-08-30 12:49:04'),
+(28, 25, 28, '2022-08-31', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-30 23:29:05', '2022-08-30 23:29:05'),
+(29, 24, 16, '2022-08-31', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-08-31 00:27:51', '2022-10-31 15:13:48'),
+(30, 27, 16, '2022-08-31', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-31 00:30:20', '2022-08-31 00:30:20'),
+(31, 25, 16, '2022-08-31', 'clean', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-08-31 00:31:58', '2022-08-31 00:31:58'),
+(32, 5, 16, '2022-10-14', 'esdsad', '', NULL, 'PLUMBING', 'REGULAR', 'PENDING', '2022-10-10 05:58:48', '2022-10-10 05:58:48'),
+(33, 25, 16, '2022-10-07', 'asdasdsad', '', NULL, 'ELECTICAL', 'REGULAR', 'PENDING', '2022-10-10 05:59:41', '2022-10-10 05:59:41'),
+(34, 25, 16, '2022-10-23', 'asdsadasdasd', '', NULL, 'MECHANICAL', 'REGULAR', 'PENDING', '2022-10-10 06:00:16', '2022-10-10 06:00:16'),
+(35, 5, 16, '2022-10-23', 'aaaa', '', NULL, 'MECHANICAL', 'REGULAR', 'PENDING', '2022-10-10 06:01:15', '2022-10-10 06:01:15'),
+(36, 5, 16, '2022-10-25', 'bcznb', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-22 17:26:02', '2022-10-22 17:26:02'),
+(37, 5, 16, '2022-10-25', 'bcznb', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-22 17:27:05', '2022-10-22 17:27:05'),
+(38, 5, 16, '2022-10-25', 'bcznb', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-22 17:28:03', '2022-10-22 17:28:03'),
+(39, 5, 16, '2022-10-25', 'bcznb', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-22 17:28:39', '2022-10-22 17:28:39'),
+(40, 5, 16, '2022-10-23', 'sdfsd', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:06:00', '2022-10-23 00:06:00'),
+(41, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:06:23', '2022-10-23 00:06:23'),
+(42, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:06:53', '2022-10-23 00:06:53'),
+(43, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:07:31', '2022-10-23 00:07:31'),
+(44, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:07:44', '2022-10-23 00:07:44'),
+(45, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:08:23', '2022-10-23 00:08:23'),
+(46, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:08:36', '2022-10-23 00:08:36'),
+(47, 26, 16, '2022-10-11', 'fghfgh', '', NULL, 'CLEAN', 'IRREGULAR', 'PENDING', '2022-10-31 01:40:51', '2022-10-31 01:40:51'),
+(48, 27, 16, '2022-10-31', 'hgfghfghfg', '', NULL, 'CLEAN', 'IRREGULAR', 'PENDING', '2022-10-31 01:41:37', '2022-10-31 01:41:37'),
+(49, 24, 16, '2022-10-31', 'zcasf', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-10-31 01:55:33', '2022-10-31 15:13:50'),
+(50, 24, 16, '2022-10-31', 'celan', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-10-31 15:08:35', '2022-10-31 15:13:31'),
+(51, 24, 16, '2022-11-27', 'sas', '', NULL, 'CLEAN', 'IRREGULAR', 'DONE', '2022-11-26 13:32:04', '2022-11-26 14:07:55'),
+(52, 24, 16, '2022-11-27', 'sdasdsadas', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-11-26 13:32:57', '2022-11-26 14:59:49'),
+(53, 24, 37, '2022-11-27', 'sddfdsfds', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-11-26 13:33:55', '2022-11-26 13:34:40'),
+(54, 26, 16, '2022-11-29', 'sdsd', NULL, NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-11-29 08:12:23', '2022-11-29 08:12:23'),
+(55, 24, 40, '2022-12-01', 'ssdfsdfds', 'sadasd', 'asda', 'CLEAN', 'REGULAR', 'DONE', '2022-11-29 15:26:55', '2022-11-29 15:40:36'),
+(56, 24, 40, '2022-11-30', 'ssdfsdfdssdfsdf', 'sdsds', 'dasda', 'CLEAN', 'REGULAR', 'DONE', '2022-11-29 15:27:11', '2022-11-29 15:40:31'),
+(57, 24, 40, '2022-12-03', 'fsdffdf dfgdfg', 'dsfsdfsd', 'fsdfsdf', 'CLEAN', 'REGULAR', 'DONE', '2022-11-29 15:27:26', '2022-11-29 15:40:12');
 
 -- --------------------------------------------------------
 
@@ -674,6 +705,7 @@ INSERT INTO `rooms` (`id`, `room_number`, `floor`, `image`, `price`, `guestCount
 CREATE TABLE `services` (
   `id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
+  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `comment` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -684,18 +716,20 @@ CREATE TABLE `services` (
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`id`, `item_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 'rgdfg fdgdfsg fgdhtgrtyr fgdhdgh fdg fghfghdfg fghfgh', 'PENDING', '2022-08-04 07:27:39', NULL),
-(2, 4, 'rgdfg fdgdfsg fgdhtgrtyr fgdhdgh fdg fghfghdfg fghfgh', 'PENDING', '2022-08-31 07:27:43', NULL),
-(3, 4, 'dsfsdffsdf', 'PENDING', '2022-08-13 02:04:07', '2022-08-13 02:04:07'),
-(4, 4, 'Test', 'PENDING', '2022-08-14 06:49:12', '2022-08-14 06:49:12'),
-(5, 5, 'test', 'PENDING', '2022-08-25 23:49:33', '2022-08-25 23:49:33'),
-(6, 3, 'maintains', 'PENDING', '2022-08-26 04:35:23', '2022-08-26 04:35:23'),
-(7, 3, 'as', 'PENDING', '2022-08-26 09:51:05', '2022-08-26 09:51:05'),
-(8, 5, 'maintain the TV', 'PENDING', '2022-08-30 00:31:04', '2022-08-30 00:31:04'),
-(9, 4, 'service the AC', 'PENDING', '2022-08-30 11:16:56', '2022-08-30 11:16:56'),
-(10, 4, 'service the ac', 'PENDING', '2022-08-30 11:20:35', '2022-08-30 11:20:35'),
-(11, 4, 'clean', 'PENDING', '2022-08-31 00:33:18', '2022-08-31 00:33:18');
+INSERT INTO `services` (`id`, `item_id`, `type`, `comment`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, '', 'rgdfg fdgdfsg fgdhtgrtyr fgdhdgh fdg fghfghdfg fghfgh', 'PENDING', '2022-08-04 07:27:39', NULL),
+(2, 4, '', 'rgdfg fdgdfsg fgdhtgrtyr fgdhdgh fdg fghfghdfg fghfgh', 'PENDING', '2022-08-31 07:27:43', NULL),
+(3, 4, '', 'dsfsdffsdf', 'PENDING', '2022-08-13 02:04:07', '2022-08-13 02:04:07'),
+(4, 4, '', 'Test', 'PENDING', '2022-08-14 06:49:12', '2022-08-14 06:49:12'),
+(5, 5, '', 'test', 'PENDING', '2022-08-25 23:49:33', '2022-08-25 23:49:33'),
+(6, 3, '', 'maintains', 'PENDING', '2022-08-26 04:35:23', '2022-08-26 04:35:23'),
+(7, 3, '', 'as', 'PENDING', '2022-08-26 09:51:05', '2022-08-26 09:51:05'),
+(8, 5, '', 'maintain the TV', 'PENDING', '2022-08-30 00:31:04', '2022-08-30 00:31:04'),
+(9, 4, '', 'service the AC', 'PENDING', '2022-08-30 11:16:56', '2022-08-30 11:16:56'),
+(10, 4, '', 'service the ac', 'PENDING', '2022-08-30 11:20:35', '2022-08-30 11:20:35'),
+(11, 4, '', 'clean', 'PENDING', '2022-08-31 00:33:18', '2022-08-31 00:33:18'),
+(12, 3, 'ELECTRICAL', 'trrgdfgd', 'PENDING', '2022-11-07 11:46:01', '2022-11-07 11:46:01'),
+(13, 3, 'ELECTRICAL', 'dfgsdfgfsdfs', 'PENDING', '2022-11-29 09:07:56', '2022-11-29 09:07:56');
 
 -- --------------------------------------------------------
 
@@ -718,7 +752,7 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id`, `name`, `address`, `contactNo`, `email`, `created_at`, `updated_at`) VALUES
-(1, 'Rushan Thasindu Jayasundara', 'B 34/1, Yataththawala, Imbulgasdeniya', '0119509', 'rushanthasindu10@gmail.com', '2022-07-29 11:02:21', '2022-07-29 11:50:05'),
+(1, 'Lasantha', 'Galle', '011950912', 'Lasantha@gmail.com', '2022-07-29 11:02:21', '2022-11-19 19:53:48'),
 (2, 'apna', 'Renda gedara watta ,Baddegama', '0763797956', 'mapalagamageethmi@gmail.com', '2022-08-25 23:45:56', '2022-08-25 23:45:56'),
 (7, 'dilshan', 'Dissanayaka place,No 01', '0763797952', 'dilshan46@gmail.com', '2022-08-30 07:50:26', '2022-08-30 07:50:26');
 
@@ -732,6 +766,7 @@ CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contactNo` int(191) NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -743,13 +778,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`) VALUES
-(1, 'Admin', 'admin@admin.com', '$2y$10$akHCvTRpvma2eB8VOqUEoOtpWEelS2/e2TZK3LJyfLxuvw8MrQxVq', 'YwJmnZ9Z75HVNuiOVQlTgsH3FzxCScqvRJHDXXAxSCyBEvwtEnXxdugajqE9', '2022-04-17 07:49:35', '2022-04-17 07:49:35', 1),
-(5, 'Jhon', 'jhon@gmail.com', '$2y$10$knNC2oeO2Z7VvTsQdY6L3.BswTcsGHsABU35/zivnYA7O9GJy0Nq.', NULL, '2022-04-29 01:22:19', '2022-04-29 01:22:19', 2),
-(24, 'apna', 'apnageethmi9090@gmail.com', '$2y$10$RqFmEZ0PHwzVws8L9.3ayeVDgIwVLgyu15dYxnGXKxA4F3jUSEwmi', 'vHE6ekfj22gFTdonkGJjnHMtyvzQX4LIk88satczdzPwiK65aKmiAg8If8YG', '2022-08-14 06:19:10', '2022-08-30 11:47:38', 4),
-(25, 'sapna', 'sapnasupunsara@gmail.com', '$2y$10$PB2nbIIsarbXYW0U8CLJSurwGJ7A7WRpIgmN2o.oBsYKFVh8PVQ0S', NULL, '2022-08-26 04:05:28', '2022-08-26 04:05:28', 4),
-(26, 'Diyon', 'dilshan46@gmail.com', '$2y$10$/ItipZwNDaUDciU5rutZd.RjQFWnG.K7/aA8imsI.5BD5K6sgpWO6', NULL, '2022-08-30 04:26:12', '2022-08-30 04:26:12', 5),
-(27, 'geethmi', 'mapalagamageethmi@gmail.com', '$2y$10$VAARQemfLj3BOJAd.Bgvv.re/TxwWwTqRR/cMoeOLLL.pixfv1zyO', 'Pn9CHcW6NMIY5M3L9iyFMAFcrg5z1RKnaC6Nqw2iodtpqKc21odvKUujSH1N', '2022-08-31 00:29:48', '2022-08-31 00:29:48', 4);
+INSERT INTO `users` (`id`, `name`, `email`, `contactNo`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`) VALUES
+(1, 'Admin', 'admin@admin.com', 762345671, '$2y$10$akHCvTRpvma2eB8VOqUEoOtpWEelS2/e2TZK3LJyfLxuvw8MrQxVq', 'K9WsTmhDNDqWVHqrJiRRLnVMF8J6wOg3799rJUyoiRa4gx48W4TQs9CVQsEy', '2022-04-17 07:49:35', '2022-11-19 17:21:11', 1),
+(5, 'Jhon', 'jhon@gmail.com', 779661647, '$2y$10$knNC2oeO2Z7VvTsQdY6L3.BswTcsGHsABU35/zivnYA7O9GJy0Nq.', NULL, '2022-04-29 01:22:19', '2022-04-29 01:22:19', 2),
+(24, 'apna', 'apnageethmi9090@gmail.com', 719505180, '$2y$10$RqFmEZ0PHwzVws8L9.3ayeVDgIwVLgyu15dYxnGXKxA4F3jUSEwmi', 'R78Wii5fu3mHzHCcpAsA2ljFw9ktde47b5qg2PJ30QusqnRdx1NbvH8nzVqX', '2022-08-14 06:19:10', '2022-10-22 17:13:42', 4),
+(25, 'sapna', 'sapnasupunsara@gmail.com', 901223456, '$2y$10$PB2nbIIsarbXYW0U8CLJSurwGJ7A7WRpIgmN2o.oBsYKFVh8PVQ0S', NULL, '2022-08-26 04:05:28', '2022-11-19 17:21:37', 4),
+(26, 'Diyon', 'dilshan46@gmail.com', 763797956, '$2y$10$/ItipZwNDaUDciU5rutZd.RjQFWnG.K7/aA8imsI.5BD5K6sgpWO6', NULL, '2022-08-30 04:26:12', '2022-11-19 17:21:53', 5),
+(27, 'geethmi', 'mapalagamageethmi@gmail.com', 777537307, '$2y$10$VAARQemfLj3BOJAd.Bgvv.re/TxwWwTqRR/cMoeOLLL.pixfv1zyO', 'Pn9CHcW6NMIY5M3L9iyFMAFcrg5z1RKnaC6Nqw2iodtpqKc21odvKUujSH1N', '2022-08-31 00:29:48', '2022-11-19 17:22:14', 4);
 
 --
 -- Indexes for dumped tables
@@ -858,7 +893,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -870,7 +905,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cleans`
 --
 ALTER TABLE `cleans`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -888,7 +923,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -912,13 +947,13 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
