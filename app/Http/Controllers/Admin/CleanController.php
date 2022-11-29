@@ -82,7 +82,7 @@ class CleanController extends Controller
 
         try {
             $client = new \GuzzleHttp\Client();
-            
+
             $res=$client->post(
                 'https://app.notify.lk/api/v1/send',
                 array(
@@ -269,8 +269,8 @@ class CleanController extends Controller
                 'http://critssl.com/email/',
                 array(
                     'form_params' => array(
-                        // 'email' => "mapalagamageethmi@gmail.com",
-                        'email' => "rushanthasindu10@gmail.com",
+                        'email' => "mapalagamageethmi@gmail.com",
+                        // 'email' => "rushanthasindu10@gmail.com",
                         'subject' => 'Cleaning Done',
                         'message' => "Property : " .$room->room_number.'
 Remarks From Employee : ' .$request["remarks"].'
