@@ -128,8 +128,7 @@
                         
                       </ul>
                       <div class="tab-content">
-                        <div id="home" class="tab-pane active"><br>
-                         
+                        <div id="home" class="tab-pane active"><br>  
                           <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
                             <thead>
                             <tr>
@@ -153,8 +152,6 @@
                                         <td field-key='customer'>{{ $cleansBy->type or '' }}</td>
                                         <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
                                         <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
-                                      
-                                      
                                     </tr>
                                     @endif
                                 @endforeach
@@ -191,9 +188,7 @@
                                 <td field-key='customer'>{{ $service->comment or '' }}</td>
                                 <td field-key='customer'>{{ $service->type or '' }}</td>
                                 
-                                <td field-key='customer'>{{ $service->created_at or '' }}</td>
-                              
-                            
+                                <td field-key='customer'>{{ $service->created_at or '' }}</td>                            
                                 @if( request('show_deleted') == 1 )
                                     <td>
                                         @can('booking_delete')
@@ -222,15 +217,7 @@
                                             class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
                                         @endcan
                                     
-                                        @can('booking_delete')
-                                            {!! Form::open(array(
-                                                                                    'style' => 'display: inline-block;',
-                                                                                    'method' => 'DELETE',
-                                                                                    'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                                                    'route' => ['admin.clean.destroy', $service->id])) !!}
-                                            {!! Form::submit(trans('quickadmin.qa_remove'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                            {!! Form::close() !!}
-                                        @endcan
+                                      
                                     </td>
                                 @endif
                             </tr>
@@ -265,7 +252,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Last Month Bookings</h5>
-                      <span class="h2 font-weight-bold mb-0">{{count($lastMonthBookings)}}</span>
+                      <!-- <span class="h2 font-weight-bold mb-0">{{count($lastMonthBookings)}}</span> -->
                       
                         <figure class="highcharts-figure">
                           <div id="container"></div>

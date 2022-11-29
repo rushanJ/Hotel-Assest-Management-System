@@ -65,6 +65,18 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-xs-12 form-group">
+                                    {!! Form::label('missingItems', trans('quickadmin.clean.fields.missingItems').'*', ['class' => 'control-label']) !!}
+                                    {!! Form::textarea('missingItems', old('missingItems'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                                    <p class="help-block"></p>
+                                    @if($errors->has('missingItems'))
+                                        <p class="help-block">
+                                            {{ $errors->first('missingItems') }}
+                                        </p>
+                                    @endif
+                                </div>
+                            </div>
                             {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-success']) !!}
                         </div> 
                         

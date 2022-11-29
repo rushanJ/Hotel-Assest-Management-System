@@ -138,7 +138,7 @@ class RoomsController extends Controller
         $items = Item::where('roomId', $id) ->get();
         // dd($room->cleansBy[0]->date);
 
-        $cleansBy_list = \DB::select("SELECT `cleans`.`date`,`cleans`.`is_regular`,`cleans`.`type`,`cleans`.`user_id`,`cleans`.`room_id`,`cleans`.`id`,`cleans`.`remarks`,`cleans`.`created_at`,`users`.`name`,`rooms`.`room_number` FROM `cleans`,`users`,`rooms` WHERE cleans.user_id=users.id AND `cleans`.`room_id`=`rooms`.`id` AND `cleans`.`room_id`=$id;");
+        $cleansBy_list = \DB::select("SELECT `cleans`.`date`,`cleans`.`is_regular`,`cleans`.`employeeRemarks`,`cleans`.`missingItems`,`cleans`.`type`,`cleans`.`user_id`,`cleans`.`room_id`,`cleans`.`id`,`cleans`.`remarks`,`cleans`.`created_at`,`users`.`name`,`rooms`.`room_number` FROM `cleans`,`users`,`rooms` WHERE cleans.user_id=users.id AND `cleans`.`room_id`=`rooms`.`id` AND `cleans`.`room_id`=$id;");
 
         // dd($users    ); // 1
 

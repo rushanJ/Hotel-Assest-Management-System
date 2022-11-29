@@ -54,6 +54,8 @@ return [
 			'irregular' => 'Irregular',
 			'employee' => 'Employee ',
 			'date' => 'Date',
+			'employeeRemarks' => 'Employee Remarks',
+			'missingItems' => 'Missing Items',
 			'remarks' => 'Remarks',
 		],
 	],
@@ -120,6 +122,7 @@ return [
 		'fields' => [
 			'comment' => 'Comment',
 			'status' => 'Status',
+			'type' => 'Type',
 			'createdDate' => 'Created Date',
 		],
 	],

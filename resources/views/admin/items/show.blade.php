@@ -140,8 +140,7 @@
                                 <td field-key='customer'>{{ $service->type or '' }}</td>
                                 <td field-key='customer'>{{ $service->status or '' }}</td>
                                 <td field-key='customer'>{{ $service->created_at or '' }}</td>
-                              
-                            
+                                
                                 @if( request('show_deleted') == 1 )
                                     <td>
                                         @can('booking_delete')

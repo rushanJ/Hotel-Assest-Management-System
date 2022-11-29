@@ -232,6 +232,8 @@
                             <th>@lang('quickadmin.clean.fields.date')</th>
                             <th>@lang('quickadmin.clean.fields.type')</th>
                             <th>@lang('quickadmin.clean.fields.remarks')</th>
+                            <th>@lang('quickadmin.clean.fields.employeeRemarks')</th>
+                            <th>@lang('quickadmin.clean.fields.missingItems')</th>
                             <th>@lang('quickadmin.clean.fields.assigned_at')</th>
                            
                             @if( request('show_deleted') == 1 )
@@ -251,6 +253,8 @@
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->is_regular or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->employeeRemarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->missingItems or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    
                                     @if( request('show_deleted') == 1 )
@@ -399,6 +403,8 @@
                             <th>@lang('quickadmin.clean.fields.date')</th>
                             <th>@lang('quickadmin.clean.fields.type')</th>
                             <th>@lang('quickadmin.clean.fields.remarks')</th>
+                            <th>@lang('quickadmin.clean.fields.employeeRemarks')</th>
+                            <th>@lang('quickadmin.clean.fields.missingItems')</th>
                             <th>@lang('quickadmin.clean.fields.assigned_at')</th>
                            
                             @if( request('show_deleted') == 1 )
@@ -418,6 +424,8 @@
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->is_regular or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->employeeRemarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->missingItems or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    
                                     @if( request('show_deleted') == 1 )
@@ -470,7 +478,6 @@
                         </tbody>
                     </table>
                 </div>
-
 
                 <div role="tabpanel" class="tab-pane inactive" id="electrical">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
@@ -568,6 +575,8 @@
                             <th>@lang('quickadmin.clean.fields.date')</th>
                             <th>@lang('quickadmin.clean.fields.type')</th>
                             <th>@lang('quickadmin.clean.fields.remarks')</th>
+                            <th>@lang('quickadmin.clean.fields.employeeRemarks')</th>
+                            <th>@lang('quickadmin.clean.fields.missingItems')</th>
                             <th>@lang('quickadmin.clean.fields.assigned_at')</th>
                            
                             @if( request('show_deleted') == 1 )
@@ -587,6 +596,8 @@
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>  
                                     <td field-key='type'>{{ $cleansBy->is_regular or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->employeeRemarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->missingItems or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    
                                     @if( request('show_deleted') == 1 )
@@ -722,6 +733,8 @@
                             <th>@lang('quickadmin.clean.fields.employee')</th>
                             <th>@lang('quickadmin.clean.fields.date')</th>
                             <th>@lang('quickadmin.clean.fields.remarks')</th>
+                            <th>@lang('quickadmin.clean.fields.employeeRemarks')</th>
+                            <th>@lang('quickadmin.clean.fields.missingItems')</th>
                             <th>@lang('quickadmin.clean.fields.assigned_at')</th>
                            
                             @if( request('show_deleted') == 1 )
@@ -740,6 +753,8 @@
                                     <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->employeeRemarks or '' }}</td>
+                                    <td field-key='customer'>{{ $cleansBy->missingItems or '' }}</td>
                                     <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
                                    
                                     @if( request('show_deleted') == 1 )

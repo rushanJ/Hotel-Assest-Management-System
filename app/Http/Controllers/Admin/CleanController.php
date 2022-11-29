@@ -82,20 +82,22 @@ class CleanController extends Controller
 
         try {
             $client = new \GuzzleHttp\Client();
-            // $res=$client->post(
-            //     'https://app.notify.lk/api/v1/send',
-            //     array(
-            //         'form_params' => array(
-            //             'user_id' => '23643',
-            //             'api_key' => 'Dq6KcyMvbKVDt104JW26',
-            //             'sender_id' => "NotifyDEMO",
-            //             'to' => "94".$user->contactNo,
-            //             'message' => $msgTxt
+            
+            $res=$client->post(
+                'https://app.notify.lk/api/v1/send',
+                array(
+                    'form_params' => array(
+                        'user_id' => '23643',
+                        'api_key' => 'Dq6KcyMvbKVDt104JW26',
+                        'sender_id' => "NotifyDEMO",
+                        'to' => "94".$user->contactNo,
+                        'message' => $msgTxt
                        
-            //         )
-            //     )
-            // );
+                    )
+                )
+            );
     
+
          
             } 
             catch (Swift_TransportException $e) {
@@ -251,12 +253,15 @@ class CleanController extends Controller
         // $room->update($request->all());
         $clean->update( ['status'=>'DONE' ]);
         $clean->update( ['employeeRemarks'=>$request["remarks"] ]);
+        $clean->update( ['missingItems'=>$request["missingItems"] ]);
      
         $room = Room::findOrFail($clean->room_id);
-        //  dd($room );
+         
         Clean::where('id', $request["id"])
         ->update([
-               'status' => 'DONE'
+               'status' => 'DONE',
+               'employeeRemarks'=>$request["remarks"],
+               'missingItems'=>$request["missingItems"] 
         ]);
         try {
             $client = new \GuzzleHttp\Client();
@@ -264,16 +269,18 @@ class CleanController extends Controller
                 'http://critssl.com/email/',
                 array(
                     'form_params' => array(
-                        'email' => "mapalagamageethmi@gmail.com",
-                        // 'email' => "rushanthasindu10@gmail.com",
+                        // 'email' => "mapalagamageethmi@gmail.com",
+                        'email' => "rushanthasindu10@gmail.com",
                         'subject' => 'Cleaning Done',
                         'message' => "Property : " .$room->room_number.'
-Remarks From Employee : ' .$request["remarks"]
+Remarks From Employee : ' .$request["remarks"].'
+Missing Items : ' .$request["missingItems"]
+
                     )
                 )
             );
     
-         
+            // dd($request["missingItems"]);
         } 
         catch (Swift_TransportException $e) {
             echo $e->getMessage();
