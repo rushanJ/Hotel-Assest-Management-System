@@ -238,4 +238,6 @@ class ServiceController extends Controller
 
         // return view('admin.rooms.index', compact('rooms'));
     }
+
+    
 }

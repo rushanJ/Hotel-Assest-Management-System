@@ -116,42 +116,139 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Today Service List ({{count($cleansBy_list)}})</h5>
-                       <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
-                        <thead>
-                        <tr>
-                            <th>@lang('quickadmin.clean.fields.employee')</th>
-                            <th>@lang('quickadmin.clean.fields.date')</th>
-                            <th>@lang('quickadmin.clean.fields.type')</th>
-                            <th>@lang('quickadmin.clean.fields.remarks')</th>
-                            <th>@lang('quickadmin.clean.fields.assigned_at')</th>
-                           
-                           
-                        </tr>
-                        </thead>
 
-                        <tbody>
-                        @if (count($cleansBy_list) > 0)
-                        @foreach ($cleansBy_list as $cleansBy)
-                            @if($cleansBy->type =='CLEAN')
-                                <tr data-entry-id="{{ $cleansBy->id }}">
-                                    <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
-                                    <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
-                                    <td field-key='customer'>{{ $cleansBy->type or '' }}</td>
-                                    <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
-                                    <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
-                                   
-                                   
-                                </tr>
-                                @endif
-                            @endforeach
-                        @else
+
+                      <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" data-toggle="pill" href="#home">Property</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="pill" href="#menu1">Item</a>
+                        </li>
+                        
+                      </ul>
+                      <div class="tab-content">
+                        <div id="home" class="tab-pane active"><br>
+                         
+                          <table class="table table-bordered table-striped {{ count($cleansBy_list) > 0 ? 'datatable' : '' }}">
+                            <thead>
                             <tr>
-                                <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                                <th>@lang('quickadmin.clean.fields.employee')</th>
+                                <th>@lang('quickadmin.clean.fields.date')</th>
+                                <th>@lang('quickadmin.clean.fields.type')</th>
+                                <th>@lang('quickadmin.clean.fields.remarks')</th>
+                                <th>@lang('quickadmin.clean.fields.assigned_at')</th>
+                              
+                              
                             </tr>
+                            </thead>
+
+                            <tbody>
+                            @if (count($cleansBy_list) > 0)
+                            @foreach ($cleansBy_list as $cleansBy)
+                                @if($cleansBy->type =='CLEAN')
+                                    <tr data-entry-id="{{ $cleansBy->id }}">
+                                        <td field-key='customer'>{{ $cleansBy->name or '' }}</td>
+                                        <td field-key='customer'>{{ $cleansBy->date or '' }}</td>
+                                        <td field-key='customer'>{{ $cleansBy->type or '' }}</td>
+                                        <td field-key='customer'>{{ $cleansBy->remarks or '' }}</td>
+                                        <td field-key='customer'>{{ $cleansBy->created_at or '' }}</td>
+                                      
+                                      
+                                    </tr>
+                                    @endif
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                                </tr>
+                            @endif
+                            </tbody>
+                        </table>
+                        </div>
+                        <div id="menu1" class=" tab-pane fade"><br>
+                        <table class="table table-bordered table-striped {{ count($services) > 0 ? 'datatable' : '' }}">
+                    <thead>
+                    <tr>
+                        <th>@lang('quickadmin.service.fields.comment')</th>
+                        
+                        <th>@lang('quickadmin.service.fields.type')</th>
+                        <th>@lang('quickadmin.service.fields.createdDate')</th>
+                     
+                    
+                        @if( request('show_deleted') == 1 )
+                            <th>&nbsp;</th>
+                        @else
+                            <th>&nbsp;</th>
                         @endif
-                        </tbody>
-                    </table>
-                      fghfghfgh
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @if (count($services) > 0)
+                        @foreach ($services as $service)
+                            <tr data-entry-id="{{ $service->id }}">
+                                <td field-key='customer'>{{ $service->comment or '' }}</td>
+                                <td field-key='customer'>{{ $service->type or '' }}</td>
+                                
+                                <td field-key='customer'>{{ $service->created_at or '' }}</td>
+                              
+                            
+                                @if( request('show_deleted') == 1 )
+                                    <td>
+                                        @can('booking_delete')
+                                            {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'POST',
+                                            'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                            'route' => ['admin.bookings.restore', $booking->id])) !!}
+                                                                            {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                                                            {!! Form::close() !!}
+                                                                        @endcan
+                                                                        @can('booking_delete')
+                                                                            {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                            'route' => ['admin.bookings.perma_del', $booking->id])) !!}
+                                                                            {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                                                            {!! Form::close() !!}
+                                                                        @endcan
+                                    </td>
+                                @else
+                                    <td>
+                                        @can('booking_view')
+                                            <a href="{{ route('admin.item.show',[$service->item_id]) }}"
+                                            class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                        @endcan
+                                    
+                                        @can('booking_delete')
+                                            {!! Form::open(array(
+                                                                                    'style' => 'display: inline-block;',
+                                                                                    'method' => 'DELETE',
+                                                                                    'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                                                    'route' => ['admin.clean.destroy', $service->id])) !!}
+                                            {!! Form::submit(trans('quickadmin.qa_remove'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                            {!! Form::close() !!}
+                                        @endcan
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
+                        </div>
+                        
+                      </div>
+
+
+                      
+                      
                     </div>
                    
                   </div>

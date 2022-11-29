@@ -11,40 +11,13 @@ use App\Http\Requests\Admin\UpdateRoomsRequest;
 use App\Item;
 use App\User;
 use App\Clean;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Storage;
 
 class CleanController extends Controller
 {
-    /**
-     * Display a listing of Room.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        if (! Gate::allows('room_access')) {
-            return abort(401);
-        }
-
-
-        if (request('show_deleted') == 1) {
-            if (! Gate::allows('room_delete')) {
-                return abort(401);
-            }
-            $items = Clean::onlyTrashed()->get();
-        } else {
-            $items = Clean::all();
-        }
-
-        // $user = User::find(4);	
- 
-        // dd($user->hasToClean[0]->room_number);
-
-        dd($items[0]->cleansBy);
-        return view('admin.clean.index', compact('items'));
-    }
-
+   
     /**
      * Show the form for creating new Room.
      *
@@ -354,4 +327,34 @@ Remarks From Employee : ' .$request["remarks"]
 
         // return view('admin.rooms.index', compact('rooms'));
     }
+
+     /**
+     * Display a listing of Room.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function report1()
+    {
+        if (! Gate::allows('room_access')) {
+            return abort(401);
+        }
+
+
+        if (request('show_deleted') == 1) {
+            if (! Gate::allows('room_delete')) {
+                return abort(401);
+            }
+            $cleansBy_list = Clean::onlyTrashed()->get();
+        } else {
+            $cleansBy_list = Clean::whereDate('date', Carbon::today())->get();
+        }
+
+        // $user = User::find(4);	
+ 
+        // dd($user->hasToClean[0]->room_number);
+
+        dd($cleansBy_list->cleansBy);
+        return view('admin.reports.index', compact('cleansBy_list'));
+    }
+
 }

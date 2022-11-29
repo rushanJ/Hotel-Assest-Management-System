@@ -11,6 +11,8 @@ use App\Customer;
 use App\User;
 // use App\Booking;
 // use App\Item;
+use App\Service;
+
 // 
 use Illuminate\Support\Facades\DB;
 
@@ -58,6 +60,8 @@ class HomeController extends Controller
             $cleansBy_list = \DB::select("SELECT `cleans`.`id`,`rooms`.`room_number`, `cleans`. `date`, `cleans`.`remarks`, `cleans`.`status`,`cleans`.`type`, `cleans`.`created_at`, `cleans`.`updated_at`, `users`.`name` FROM `cleans`,`rooms`,`users` WHERE `cleans`.`room_id`=`rooms`.`id` AND `cleans`.`user_id`=`users`.`id` AND `cleans`.`date`='$end' ORDER BY `type`;");
             $items = Item::all();
             $user = User::all();
+            $services = Service::where(['status' => 'PENDING']) ->get();
+            // dd($services[0]);
             $lastMonthBookings = DB::table('bookings')
             ->select('*')
             ->whereBetween('created_at', [$start, $end])
@@ -99,7 +103,7 @@ class HomeController extends Controller
             $bookings = '['.implode(",", $bookings).']';
             $labelBookings = '['.implode(",", $labelBookings).']';
             // dd($bookings);
-            return view('admin/home', compact('dataBooking','labelBookings','items','user','lastMonthBookings','availableSmsBaLANCE','cleansBy_list','bookings','items'));
+            return view('admin/home', compact('dataBooking','labelBookings','items','user','lastMonthBookings','availableSmsBaLANCE','cleansBy_list','bookings','items', 'services'));
 
         }
         // return view('home');

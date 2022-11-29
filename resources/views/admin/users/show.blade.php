@@ -37,22 +37,22 @@
 
             <a href="{{ route('admin.users.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
 
-            <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs" role="tablist">
 
-        
-        <li role="presentation" class=""><a href="#cleaning" aria-controls="cleaning" role="tab"
-                                                data-toggle="tab">Cleaning</a></li>
+                
+                <li role="presentation" class=""><a href="#cleaning" aria-controls="cleaning" role="tab"
+                                                        data-toggle="tab">Cleaning</a></li>
 
-        <li role="presentation" class=""><a href="#mechanical" aria-controls="mechanical" role="tab"
-                                                data-toggle="tab">Mechanical</a></li>
+                <li role="presentation" class=""><a href="#mechanical" aria-controls="mechanical" role="tab"
+                                                        data-toggle="tab">Mechanical</a></li>
 
-        <li role="presentation" class=""><a href="#electrical" aria-controls="electrical" role="tab"
-                                                data-toggle="tab">Electrical</a></li>
+                <li role="presentation" class=""><a href="#electrical" aria-controls="electrical" role="tab"
+                                                        data-toggle="tab">Electrical</a></li>
 
-        <li role="presentation" class=""><a href="#plumbing" aria-controls="plumbing" role="tab"
-                                                data-toggle="tab">Plumbing</a></li>
-                                    
-      
+                <li role="presentation" class=""><a href="#plumbing" aria-controls="plumbing" role="tab"
+                                                        data-toggle="tab">Plumbing</a></li>
+                                            
+            
         </ul>
 
 

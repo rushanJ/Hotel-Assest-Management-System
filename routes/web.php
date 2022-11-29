@@ -109,7 +109,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('rooms_restore/{id}', ['uses' => 'Admin\RoomsController@restore', 'as' => 'rooms.restore']);
     Route::delete('rooms_perma_del/{id}', ['uses' => 'Admin\RoomsController@perma_del', 'as' => 'rooms.perma_del']);
 
-
+    Route::get('report1', ['uses' => 'Admin\CleanController@report1', 'as' => 'report1']);
 
     /*Route::get('/bookings/create/', [
         'as' => 'find_rooms.create',
