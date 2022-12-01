@@ -27,7 +27,7 @@
                     </table>
                 </div>
                 <div class="col-md-6">
-                <img src="http://localhost:8000/storage/{{$room->image}}" alt="Image" style="border: 1px solid #ddd;
+                <img src="http://hpms.online/Hotel-Assest-Management-System/storage/app/public/images/{{$room->image}}" alt="Image" style="border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
   width: 350px;">
