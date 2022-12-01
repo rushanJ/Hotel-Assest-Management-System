@@ -48,10 +48,11 @@ class HomeController extends Controller
             $start = date('Y-m-d',(strtotime ( '-30 day' , strtotime ( $end) ) ));
             
             
-            $booking_info = DB::table('bookings')
-                 ->select('time_from', DB::raw('count(time_from) as total'))
-                 ->groupBy('time_from')
-                 ->whereBetween('time_from', [$start, $end])
+            $booking_info = DB::table('cleans')
+                 ->select('date','type', DB::raw('count(date) as total'))
+                 ->groupBy('date','type')
+                 ->whereBetween('date', [$start, $end])
+                //  ->where('type', "CLEAN")
                  ->get();
 
             // dd($booking_info);
@@ -84,26 +85,92 @@ class HomeController extends Controller
 
             
            
-            $labelBookings = [];
-            $dataBooking = [];
-            foreach ($booking_info as $booking) array_push($dataBooking,  $booking->total);
-            foreach ($booking_info as $booking) array_push($labelBookings,  $booking->time_from);
-            $bookings=[];
+            $labelCleanings = [];
+            $dataCleaning = [];
+            
+            foreach ($booking_info as $data) if ( $data->type=='CLEAN') array_push($dataCleaning,  $data->total);
+            foreach ($booking_info as $data) if ( $data->type=='CLEAN') array_push($labelCleanings,  $data->date);
+            $clean_chart_list=[];
             $pointer=[];
-            for ($i = 0; $i < count($labelBookings); $i++) {
+            for ($i = 0; $i < count($labelCleanings); $i++) {
                 // echo ;
-                $date= date("d", strtotime($labelBookings[$i]));
-                $pointer=[$date,$dataBooking[$i]];
+                $date= date("d", strtotime($labelCleanings[$i]));
+                $pointer=[$date,$dataCleaning[$i]];
                 $pointer = '['.implode(",", $pointer).']';
-                array_push($bookings,  $pointer);
+                array_push($clean_chart_list,  $pointer);
                 
             }
 
             // dd($bookings);
-            $bookings = '['.implode(",", $bookings).']';
-            $labelBookings = '['.implode(",", $labelBookings).']';
+            $clean_chart_list = '['.implode(",", $clean_chart_list).']';
+            $labelCleanings = '['.implode(",", $labelCleanings).']';
+
+
+
+            $labelPlumbings = [];
+            $dataPlumbing = [];
+            
+            foreach ($booking_info as $data) if ( $data->type=='PLUMBING') array_push($dataPlumbing,  $data->total);
+            foreach ($booking_info as $data) if ( $data->type=='PLUMBING') array_push($labelPlumbings,  $data->date);
+            $plumbing_chart_list=[];
+            $pointer=[];
+            for ($i = 0; $i < count($labelPlumbings); $i++) {
+                // echo ;
+                $date= date("d", strtotime($labelPlumbings[$i]));
+                $pointer=[$date,$dataPlumbing[$i]];
+                $pointer = '['.implode(",", $pointer).']';
+                array_push($plumbing_chart_list,  $pointer);
+                
+            }
+
             // dd($bookings);
-            return view('admin/home', compact('dataBooking','labelBookings','items','user','lastMonthBookings','availableSmsBaLANCE','cleansBy_list','bookings','items', 'services'));
+            $plumbing_chart_list = '['.implode(",", $plumbing_chart_list).']';
+            $labelPlumbings = '['.implode(",", $labelPlumbings).']';
+           
+
+            $labelMechanicals = [];
+            $dataMechanical = [];
+            
+            foreach ($booking_info as $data) if ( $data->type=='MECHANICAL') array_push($dataMechanical,  $data->total);
+            foreach ($booking_info as $data) if ( $data->type=='MECHANICAL') array_push($labelMechanicals,  $data->date);
+            $mechanical_chart_list=[];
+            $pointer=[];
+            for ($i = 0; $i < count($labelMechanicals); $i++) {
+                // echo ;
+                $date= date("d", strtotime($labelMechanicals[$i]));
+                $pointer=[$date,$dataMechanical[$i]];
+                $pointer = '['.implode(",", $pointer).']';
+                array_push($mechanical_chart_list,  $pointer);
+                
+            }
+
+            // dd($bookings);
+            $mechanical_chart_list = '['.implode(",", $mechanical_chart_list).']';
+            $labelMechanicals = '['.implode(",", $labelMechanicals).']';
+           
+            
+            $labelElectricals = [];
+            $dataElectrical = [];
+            
+            foreach ($booking_info as $data) if ( $data->type=='ELECTICAL') array_push($dataElectrical,  $data->total);
+            foreach ($booking_info as $data) if ( $data->type=='ELECTICAL') array_push($labelElectricals,  $data->date);
+            $electrical_chart_list=[];
+            $pointer=[];
+            for ($i = 0; $i < count($labelElectricals); $i++) {
+                // echo ;
+                $date= date("d", strtotime($labelElectricals[$i]));
+                $pointer=[$date,$dataElectrical[$i]];
+                $pointer = '['.implode(",", $pointer).']';
+                array_push($electrical_chart_list,  $pointer);
+                
+            }
+
+            // dd($bookings);
+            $electrical_chart_list = '['.implode(",", $electrical_chart_list).']';
+            $labelElectricals = '['.implode(",", $labelElectricals).']';
+           
+            // dd($plumbing_chart_list);
+            return view('admin/home', compact('dataCleaning','labelCleanings','labelPlumbings','items','user','lastMonthBookings','availableSmsBaLANCE','cleansBy_list','clean_chart_list','plumbing_chart_list','mechanical_chart_list','electrical_chart_list','items', 'services'));
 
         }
         // return view('home');

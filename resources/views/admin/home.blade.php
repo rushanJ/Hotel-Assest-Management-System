@@ -296,10 +296,19 @@
                                 pointStart: 2010
                               }
                             },
-
+                            
                             series: [{
-                              name: 'Bookings',
-                              data: {{$bookings}}
+                              name: 'CLEANING',
+                              data: {{$clean_chart_list}}
+                            },{
+                              name: 'PLUMBING',
+                              data: {{$plumbing_chart_list}}
+                            },{
+                              name: 'ELECTICAL',
+                              data: {{$electrical_chart_list}}
+                            },{
+                              name: 'MECHANICAL',
+                              data: {{$mechanical_chart_list}}
                             }],
 
                             responsive: {
