@@ -174,7 +174,7 @@
                                                                                     'style' => 'display: inline-block;',
                                                                                     'method' => 'DELETE',
                                                                                     'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                                                                    'route' => ['admin.clean.destroy', $service->id])) !!}
+                                                                                    'route' => ['admin.service.destroy', $service->id])) !!}
                                             {!! Form::submit(trans('quickadmin.qa_remove'), array('class' => 'btn btn-xs btn-danger')) !!}
                                             {!! Form::close() !!}
                                         @endcan

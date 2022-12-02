@@ -168,10 +168,10 @@ class ServiceController extends Controller
         if (! Gate::allows('room_delete')) {
             return abort(401);
         }
-        $room = Room::findOrFail($id);
+        $room = Service::findOrFail($id);
         $room->delete();
 
-        return redirect()->route('admin.rooms.index');
+        return redirect()->back();
     }
 
     /**
