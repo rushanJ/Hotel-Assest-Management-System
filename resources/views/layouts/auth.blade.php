@@ -5,7 +5,7 @@
     @include('partials.head')
 </head>
 
-<body class="page-header-fixed">
+<body class="page-header-fixed"  style="background-image: url('https://i0.wp.com/theluxurytravelexpert.com/wp-content/uploads/2018/05/ANANTARA-PEACE-HAVEN-TANGALLE.jpg?ssl=1');background-size: cover;">
 
     <div style="margin-top: 10%;"></div>
 

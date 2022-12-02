@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 10:18 PM
+-- Generation Time: Dec 01, 2022 at 09:59 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -79,8 +79,12 @@ INSERT INTO `bookings` (`id`, `time_from`, `time_to`, `additional_information`, 
 (39, '2022-09-18 18:30:00', '2022-09-01 23:19:00', 'ghfgh', '2022-08-30 12:19:56', '2022-08-30 12:19:56', NULL, 26, 30),
 (40, '2022-10-18 18:30:00', '2022-09-01 23:22:00', 'fdgfgfgdfg', '2022-09-29 12:22:53', '2022-08-30 12:22:53', NULL, 26, 36),
 (41, '2022-09-29 18:30:00', '2022-09-01 23:24:00', 'vhchgyhfgh', '2022-09-30 12:26:27', '2022-08-30 12:26:27', NULL, 27, 37),
-(42, '2022-10-18 18:30:00', '2022-09-01 11:35:00', 'romm', '2022-09-30 00:35:23', '2022-08-31 00:35:23', NULL, 24, 16),
-(43, '2022-10-21 18:30:00', '2022-10-23 05:02:00', 'dfds', '2022-10-22 18:03:14', '2022-10-22 18:03:14', NULL, 25, 28);
+(42, '2022-11-21 18:30:00', '2022-11-22 11:35:00', 'romm', '2022-09-30 00:35:23', '2022-08-31 00:35:23', NULL, 24, 16),
+(43, '2022-11-21 18:30:00', '2022-11-23 05:02:00', 'dfds', '2022-10-22 18:03:14', '2022-10-22 18:03:14', NULL, 25, 28),
+(44, '2022-11-28 17:34:00', '2022-12-02 23:04:00', 'xhbxxuy', '2022-12-01 12:04:36', '2022-12-01 12:04:36', NULL, 25, 30),
+(45, '2022-11-29 17:35:00', '2022-11-30 23:05:00', 'fxxhgv', '2022-12-01 12:05:20', '2022-12-01 12:05:20', NULL, 25, 28),
+(46, '2022-11-29 17:35:00', '2022-11-30 23:05:00', 'bvxbxv', '2022-12-01 12:05:40', '2022-12-01 12:05:40', NULL, 24, 28),
+(47, '2022-12-12 17:36:00', '2022-12-02 23:06:00', 'fxghfdhjgd', '2022-12-01 12:06:50', '2022-12-01 12:06:50', NULL, 26, 28);
 
 -- --------------------------------------------------------
 
@@ -174,17 +178,18 @@ INSERT INTO `cleans` (`id`, `user_id`, `room_id`, `date`, `remarks`, `employeeRe
 (44, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:07:44', '2022-10-23 00:07:44'),
 (45, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:08:23', '2022-10-23 00:08:23'),
 (46, 26, 16, '2022-10-23', 'dsfsdf', '', NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-10-23 00:08:36', '2022-10-23 00:08:36'),
-(47, 26, 16, '2022-10-11', 'fghfgh', '', NULL, 'CLEAN', 'IRREGULAR', 'PENDING', '2022-10-31 01:40:51', '2022-10-31 01:40:51'),
-(48, 27, 16, '2022-10-31', 'hgfghfghfg', '', NULL, 'CLEAN', 'IRREGULAR', 'PENDING', '2022-10-31 01:41:37', '2022-10-31 01:41:37'),
-(49, 24, 16, '2022-10-31', 'zcasf', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-10-31 01:55:33', '2022-10-31 15:13:50'),
-(50, 24, 16, '2022-10-31', 'celan', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-10-31 15:08:35', '2022-10-31 15:13:31'),
+(47, 26, 16, '2022-11-20', 'fghfgh', '', NULL, 'PLUMBING', 'IRREGULAR', 'PENDING', '2022-10-31 01:40:51', '2022-10-31 01:40:51'),
+(48, 27, 16, '2022-11-27', 'hgfghfghfg', '', NULL, 'PLUMBING', 'IRREGULAR', 'PENDING', '2022-10-31 01:41:37', '2022-10-31 01:41:37'),
+(49, 24, 16, '2022-11-27', 'zcasf', '', NULL, 'PLUMBING', 'REGULAR', 'DONE', '2022-10-31 01:55:33', '2022-10-31 15:13:50'),
+(50, 24, 16, '2022-11-27', 'celan', '', NULL, 'PLUMBING', 'REGULAR', 'DONE', '2022-10-31 15:08:35', '2022-10-31 15:13:31'),
 (51, 24, 16, '2022-11-27', 'sas', '', NULL, 'CLEAN', 'IRREGULAR', 'DONE', '2022-11-26 13:32:04', '2022-11-26 14:07:55'),
 (52, 24, 16, '2022-11-27', 'sdasdsadas', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-11-26 13:32:57', '2022-11-26 14:59:49'),
 (53, 24, 37, '2022-11-27', 'sddfdsfds', '', NULL, 'CLEAN', 'REGULAR', 'DONE', '2022-11-26 13:33:55', '2022-11-26 13:34:40'),
 (54, 26, 16, '2022-11-29', 'sdsd', NULL, NULL, 'CLEAN', 'REGULAR', 'PENDING', '2022-11-29 08:12:23', '2022-11-29 08:12:23'),
 (55, 24, 40, '2022-12-01', 'ssdfsdfds', 'sadasd', 'asda', 'CLEAN', 'REGULAR', 'DONE', '2022-11-29 15:26:55', '2022-11-29 15:40:36'),
 (56, 24, 40, '2022-11-30', 'ssdfsdfdssdfsdf', 'sdsds', 'dasda', 'CLEAN', 'REGULAR', 'DONE', '2022-11-29 15:27:11', '2022-11-29 15:40:31'),
-(57, 24, 40, '2022-12-03', 'fsdffdf dfgdfg', 'dsfsdfsd', 'fsdfsdf', 'CLEAN', 'REGULAR', 'DONE', '2022-11-29 15:27:26', '2022-11-29 15:40:12');
+(57, 24, 40, '2022-12-03', 'fsdffdf dfgdfg', 'dsfsdfsd', 'fsdfsdf', 'CLEAN', 'REGULAR', 'DONE', '2022-11-29 15:27:26', '2022-11-29 15:40:12'),
+(58, 24, 16, '2022-11-29', 'dfgdfg', NULL, NULL, 'PLUMBING', 'REGULAR', 'PENDING', '2022-12-01 11:29:50', '2022-12-01 11:29:50');
 
 -- --------------------------------------------------------
 
@@ -694,7 +699,8 @@ INSERT INTO `rooms` (`id`, `room_number`, `floor`, `image`, `price`, `guestCount
 (43, 'Kitchen', NULL, 'images/TnlfxD6ADB6EViDkuKLeqG2H3xmCCapArt1vJ2B0.webp', '0', 0, '1900', 'Main Kitchen', '2022-08-30 04:31:49', '2022-08-30 04:32:39', NULL, 12),
 (44, 'Room 11', 1, 'images/2bhJGxGY5I68YB2n1BUyHz8B5qgHJ4Osz4kwOLiL.jpeg', 'Rs.9000', 4, '167', '1 AC,1 washroom,2 Beds', '2022-08-30 04:33:45', '2022-08-30 05:05:50', '2022-08-30 05:05:50', 5),
 (45, 'Garden', NULL, 'images/RQOrB4KI4DIoEoAABo5rQW5zCKKzdtdxQU3cDFtt.jpeg', '0', 0, '1', 'Area 12', '2022-08-30 07:28:35', '2022-08-30 07:28:35', NULL, 12),
-(46, 'Laundry', NULL, 'images/DAxOXQBTKvOyER0hLDNxPnCoOThPu8UULrJKUS3H.jpeg', '0', 0, 'L12', 'Laundry machine', '2022-08-30 07:31:03', '2022-08-30 07:31:03', NULL, 12);
+(46, 'Laundry', NULL, 'images/DAxOXQBTKvOyER0hLDNxPnCoOThPu8UULrJKUS3H.jpeg', '0', 0, 'L12', 'Laundry machine', '2022-08-30 07:31:03', '2022-08-30 07:31:03', NULL, 12),
+(47, '001', 2, 'images/msRGhXgb4pi9phq5GIINXMA7D1KilQWEzFNVM4qp.png', '150', 3, 'dsfsd', 'cfsdf', '2022-12-01 11:33:57', '2022-12-01 11:33:57', NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -893,7 +899,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -905,7 +911,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cleans`
 --
 ALTER TABLE `cleans`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -941,7 +947,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `services`
